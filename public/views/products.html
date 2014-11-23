@@ -1,0 +1,19 @@
+﻿<div class="row">
+    <div ng-repeat="product in products" class="col-sm-4 col-md-3 col-lg-2">
+        <div class="thumbnail product">
+            <span class="price">{{product.price | currency}} ({{product.unit}})</span>
+            <img ng-src="{{product.image}}" alt="...">
+            <div class="caption">
+                <h3>{{product.name}}</h3>
+            </div>
+            <div class="panel panel-cart" ng-show="productAddingId != product._id">
+                <a href="" ng-click="startAdding(product)"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+            </div>
+            <div class="panel" ng-show="productAddingId == product._id">
+                <input type="number" ng-model="product.quantity">
+                <select ng-model="selectedUnit" ng-options="u for u in [product.unit, 'Unidad']" ng-show="product.unitSale" />
+                <button ng-click="addProduct(product,selectedUnit,product.quantity,'')">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>

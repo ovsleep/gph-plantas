@@ -1,0 +1,58 @@
+﻿<h2>Productos</h2>
+
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Buscar por nombre" ng-model="search.name">
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <td>Imagen</td>
+        <td>Nombre</td>
+        <td>Descripcion</td>
+        <td>Precio x Unidad</td>
+        <td>Unidad</td>
+        <td>Habilitar Venta por Unidad</td>
+        <td>Peso de unidad</td>
+        <td>Tags</td>
+        <td>Activo</td>
+        <td>Acciones</td>
+    </tr>
+    <tbody>
+        <tr ng-repeat="product in products | filter: search">
+            <td>
+                <img ng-src="{{product.image}}" alt="..."><br />
+                <input ng-model="product.image" />
+            </td>
+            <td>
+                <input ng-model="product.name" />
+            </td>
+            <td>
+                <input ng-model="product.description" />
+            </td>
+            <td>
+                <input ng-model="product.price" />
+            </td>
+            <td>
+                <select ng-model="product.unit" ng-options="u for u in units" />
+            </td>
+            <td>
+                <input type="checkbox" ng-model="product.unitSale" />
+            </td>
+            <td>
+                <input ng-model="product.unitWeight" />
+            </td>
+            <td>
+                <input ng-model="product.type" ng-list/>
+            </td>
+            <td>
+                <input type="checkbox" ng-model="product.active" />
+            </td>
+            <td>
+                <span class="glyphicon glyphicon-floppy-disk" ng-click="save(product)"></span>
+                <!--<span class="glyphicon glyphicon-remove" ng-click="remove(product)"></span>-->
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br />
+<button ng-click="saveAll()">Guardar</button>

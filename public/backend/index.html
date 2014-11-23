@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html ng-app="GPHPlantasBackend">
+<head>
+    <title>GPH Plantas Backend</title>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="styles/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- Timeline CSS -->
+    <link href="styles/plugins/timeline.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="styles/sb-admin-2.css" rel="stylesheet">
+    <!-- Morris Charts CSS -->
+    <link href="styles/plugins/morris.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="styles/styles.css" rel="stylesheet" />
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
+    <!--<script src="//code.jquery.com/jquery-latest.min.js"></script>
+    <script src="//unslider.com/unslider.min.js"></script>-->
+    <!--Angular-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
+
+    <!--Bootstrap Directives-->
+    <script src="js/ui-bootstrap-tpls-0.11.2.min.js"></script>
+
+    <!--angular-file-upload-->
+    <script src="js/angularFileUpload.js"></script>
+
+    <script src="scripts/directives/directives.js"></script>
+    <script src="scripts/services/services.js"></script>
+    <script src="scripts/controllers/controllers.js"></script>
+    <script src="scripts/controllers/LoginController.js"></script>
+    <script src="scripts/controllers/DashboardController.js"></script>
+    <script src="scripts/controllers/MenuController.js"></script>
+    <script src="scripts/controllers/ProductsController.js"></script>
+    <script src="scripts/controllers/ProductsUploaderController.js"></script>
+    <script src="scripts/controllers/WelcomeController.js"></script>
+    <script src="scripts/controllers/OrdersController.js"></script>
+</head>
+<body class="row">
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">GPH Plantas Admin v0.1</a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown" ng-controller="WelcomeController">
+                    <div ng-show="user"><span>{{user.name}}</span>,<a href="#" ng-click="logout()">salir</a></div>
+                    <div ng-hide="user"><a href="/backend/#/login">ingresar</a></div>
+                </li>
+            </ul>
+            <!-- /.navbar-top-links -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Productos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#/productos/cargar">Carga planilla</a>
+                                </li>
+                                <li>
+                                    <a href="#/productos">Modificar</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#/pedidos"><i class="fa fa-wrench fa-fw"></i> Pedidos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#/pedidos/pendiente">Pendientes</a>
+                                </li>
+                                <li>
+                                    <a href="#/pedidos/listo">Listos</a>
+                                </li>
+                                <li>
+                                    <a href="#/pedidos/entregado">Entregados</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div id="page-wrapper">
+            <div ng-view></div>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+
+
+
+    <!--<!-- Bootstrap Core JavaScript -->
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <!-- Metis Menu Plugin JavaScript -->
+    <!--<script src="js/plugins/metisMenu/metisMenu.min.js"></script>-->
+    <!-- Morris Charts JavaScript -->
+    <!--<script src="js/plugins/morris/raphael.min.js"></script>-->
+    <!--<script src="js/plugins/morris/morris.min.js"></script>-->
+    <!--<script src="js/plugins/morris/morris-data.js"></script>-->
+    <!-- Custom Theme JavaScript -->
+    <!--<script src="js/sb-admin-2.js"></script>-->-->
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿<h2>Pedido <button type="button" class="btn btn-default pull-right" ng-click="clearCart()">Limpiar carrito</button></h2>
+<h4>Precio total: <span>{{cart.getTotalPrice() | currency}}</span></h4>
+<table class="invoice table ">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Item</th>
+            <th>Comentarios</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody ng-repeat="item in cart.items">
+        <tr>
+            <td><img ng-src="{{item.image}}" /> </td>
+            <td>{{item.name}}</td>
+            <td><input type="text" ng-model="item.comment" /> </td>
+            <td><input type="number" ng-model="item.quantity" /> ({{item.unit}})</td>
+            <td>x {{item.price | currency}} <span ng-show="item.aproxPrice" class="text-danger">*</span></td>
+            <td>{{item.price * item.quantity | currency}} <span ng-show="item.aproxPrice" class="text-danger">*</span></td>
+            <td><a href="" ng-click="removeProduct(item.id)"><span class="glyphicon glyphicon-remove"></span></a></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                <span class="text-danger">* precio aproximado. Puede variar dependiendo de la unidad.</span>
+            </td>
+            <th>Total:</th>
+            <th>{{cart.getTotalPrice() | currency}}</th>
+            <td colspan="1"></td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="center-block text-center"><button class="btn btn-primary btn-lg" ng-click="checkOut()">Realizar pedido >></button></div>
