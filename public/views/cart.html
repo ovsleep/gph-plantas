@@ -14,12 +14,12 @@
     </thead>
     <tbody ng-repeat="item in cart.items">
         <tr>
-            <td><img ng-src="{{item.image}}" /> </td>
+            <td><img ng-src="{{item.image}}" class="product-img" /> </td>
             <td>{{item.name}}</td>
-            <td><input type="text" ng-model="item.comment" /> </td>
-            <td><input type="number" ng-model="item.quantity" /> ({{item.unit}})</td>
-            <td>x {{item.price | currency}} <span ng-show="item.aproxPrice" class="text-danger">*</span></td>
-            <td>{{item.price * item.quantity | currency}} <span ng-show="item.aproxPrice" class="text-danger">*</span></td>
+            <td><input type="text" class="form-control" ng-model="item.comment" /> </td>
+            <td class="no-breaks"><input type="number" class="form-control" ng-model="item.quantity" /> ({{item.unit}})</td>
+            <td class="no-breaks">x {{item.price | currency}} <span ng-show="item.aproxPrice" class="text-danger">*</span></td>
+            <td class="no-breaks">{{item.price * item.quantity | currency}} <span ng-show="item.aproxPrice" class="text-danger">*</span></td>
             <td><a href="" ng-click="removeProduct(item.id)"><span class="glyphicon glyphicon-remove"></span></a></td>
         </tr>
     </tbody>

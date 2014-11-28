@@ -114,7 +114,7 @@ shoppingCart.prototype.getTotalCount = function (id) {
     for (var i = 0; i < this.items.length; i++) {
         var item = this.items[i];
         if (id == null || item.id == id) {
-            count += this.toNumber(item.quantity);
+            count += 1;
         }
     }
     return count;

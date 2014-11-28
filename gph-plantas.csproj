@@ -116,7 +116,15 @@
     <Content Include="public\backend\views\ordersPending.html" />
     <Content Include="public\backend\views\products.html" />
     <Content Include="public\backend\views\productsUploader.html" />
+    <Content Include="public\font-awesome-4.1.0\css\font-awesome.css" />
+    <Content Include="public\font-awesome-4.1.0\css\font-awesome.min.css" />
+    <Content Include="public\font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="public\js\ui-bootstrap-tpls-0.11.2.min.js" />
+    <Content Include="public\styles\bootstrap.css" />
     <Content Include="public\views\login.html" />
+    <Content Include="public\views\productModal.html" />
+    <Content Include="routes\backend.js" />
     <Content Include="views\error.jade" />
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />
@@ -137,7 +145,6 @@
     <Content Include="public\images\site\slider3.png" />
     <Content Include="public\images\site\slider4.png" />
     <Content Include="public\index.html" />
-    <Content Include="public\javascripts\global.js" />
     <Content Include="public\scripts\controllers\app.js" />
     <Content Include="public\scripts\controllers\controllers.js" />
     <Content Include="public\scripts\controllers\menuController.js" />
@@ -199,6 +206,105 @@
     <Content Include="public\backend\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="public\backend\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="public\backend\fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\fonts\fontawesome-webfont.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\fonts\fontawesome-webfont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\fonts\fontawesome-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\fonts\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\less\bordered-pulled.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\less\core.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\less\fixed-width.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\less\font-awesome.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\less\icons.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\less\larger.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\less\list.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\less\mixins.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\less\path.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\less\rotated-flipped.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\less\spinning.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\less\stacked.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\less\variables.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\scss\_bordered-pulled.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\scss\_core.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\scss\_fixed-width.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\scss\_icons.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\scss\_larger.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\scss\_list.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\scss\_mixins.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\scss\_path.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\scss\_rotated-flipped.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\scss\_spinning.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\scss\_stacked.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\scss\_variables.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\font-awesome-4.1.0\scss\font-awesome.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\fonts\glyphicons-halflings-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

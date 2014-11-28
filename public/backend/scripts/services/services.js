@@ -3,7 +3,7 @@
 var services = angular.module('GPHPlantasBackend.services', ['ngResource']);
 
 services.factory('Product', ['$resource', function ($resource) {
-    return $resource('/api/productos/listado/:id', { id: '@id' });
+    return $resource('/api/backend/products/listado/:id', { id: '@id' });
 }]);
 
 services.factory('ProductLoader', ['Product', '$route', '$q', function (Product, $route, $q) {
@@ -17,7 +17,7 @@ services.factory('ProductLoader', ['Product', '$route', '$q', function (Product,
 }]);
 
 services.factory('ProductByType', ['$resource', function ($resource) {
-    return $resource('/api/productos/listado/filtro/:type', { type: '@type' });
+    return $resource('/api/backend/products/listado/filtro/:type', { type: '@type' });
 }]);
 
 services.factory('ProductByTypeLoader', ['ProductByType', '$route', '$q', function (ProductByType, $route, $q) {
@@ -43,14 +43,12 @@ services.factory('MultiProductLoader', ['Product', '$q', function (Product, $q) 
     }
 }]);
 
-
-
 services.factory('Order', ['$resource', function ($resource) {
-    return $resource('/api/orders/:_id', { _id: '@_id' });
+    return $resource('/api/backend/orders/:_id', { _id: '@_id' });
 }]);
 
 services.factory('OrderByStatus', ['$resource', function ($resource) {
-    return $resource('/api/orders/filter/:status', { type: '@status' });
+    return $resource('/api/backend/orders/filter/:status', { type: '@status' });
 }]);
 
 services.factory('OrderByStatusLoader', ['OrderByStatus', '$route', '$q', function (OrderByStatus, $route, $q) {
@@ -82,7 +80,7 @@ services.factory("authenticationSvc", ["$http","$q","$window",function ($http, $
     function login(userName, password) {
         var deferred = $q.defer();
 
-        $http.post("/api/auth/login", { usr: userName, pass: password })
+        $http.post("/api/auth/backend-login", { usr: userName, pass: password })
             .then(function (result) {
                 userInfo = {
                     accessToken: result.data.accessToken,
@@ -103,23 +101,23 @@ services.factory("authenticationSvc", ["$http","$q","$window",function ($http, $
         return deferred.promise;
     }
 
-    function register(user) {
-        var deferred = $q.defer();
+    //function register(user) {
+    //    var deferred = $q.defer();
 
-        $http.post("/api/auth/register", { usr: user })
-            .then(function (result) {
-                userInfo = {
-                    accessToken: result.data.accessToken,
-                    userName: result.data.usr
-                };
-                $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
-                deferred.resolve(userInfo);
-            }, function (error) {
-                deferred.reject(error);
-            });
+    //    $http.post("/api/auth/register", { usr: user })
+    //        .then(function (result) {
+    //            userInfo = {
+    //                accessToken: result.data.accessToken,
+    //                userName: result.data.usr
+    //            };
+    //            $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+    //            deferred.resolve(userInfo);
+    //        }, function (error) {
+    //            deferred.reject(error);
+    //        });
 
-        return deferred.promise;
-    }
+    //    return deferred.promise;
+    //}
 
     function logout() {
         var deferred = $q.defer();
@@ -153,7 +151,7 @@ services.factory("authenticationSvc", ["$http","$q","$window",function ($http, $
     init();
 
     return {
-        register: register,
+        //register: register,
         login: login,
         logout: logout,
         getUserInfo: getUserInfo
@@ -166,9 +164,11 @@ services.factory('authInterceptorService', ['$q', '$location', '$window', functi
 
         config.headers = config.headers || {};
 
-        var authData = $window.sessionStorage["userInfo"];
-        if (authData) {
-            config.headers.Authorization = authData.accessToken;
+        if ($window.sessionStorage["userInfo"]) {
+            var authData = JSON.parse($window.sessionStorage["userInfo"]);
+            if (authData) {
+                config.headers.Authorization = authData.accessToken;
+            }
         }
 
         return config;

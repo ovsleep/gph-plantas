@@ -38,6 +38,10 @@
     margin: 0;
     margin-bottom:15px;
 }
+
+.no-breaks{
+    white-space: nowrap;
+}
 /*Slider*/
 .banner {
     position: relative;
@@ -140,7 +144,11 @@ padding: 16px 15px 16px 14px;
 /*#endregion */
 
 /*#region Productos */
-.product img {
+.product {
+    height:185px;
+    cursor:pointer;
+}
+.product-img {
     width: 120px;
     height: 120px;
 }
@@ -148,11 +156,17 @@ padding: 16px 15px 16px 14px;
     padding: 0;
     margin: 0;
     padding-left: 5px;
+    height:55px;
+    display: table;
+    table-layout: fixed;
 }
 
 .product h3{
     padding: 0;
     margin: 0;
+    display:table-cell;
+    vertical-align:middle;
+    font-size:16px;
 }
 
 .product .price{
@@ -179,9 +193,28 @@ padding: 16px 15px 16px 14px;
 }
 /*#endregion */
 
+/*#region Product modal */
+.product-modal{
+    padding: 10px;
+    width:400px;
+}
+
+.product-modal p{
+    margin-bottom:5px;
+}
+
+.modal-sm {
+width: 400px;
+}
+
+.product-modal .text-danger-small{
+    font-size: 11px;
+}
+/*#endregion */
+
 /*#region Carrito */
 .invoice input[type="number"]{
-    width: 45px;
+    width: 60px;
 }
 .invoice input[type="text"]{
     width: 100%;

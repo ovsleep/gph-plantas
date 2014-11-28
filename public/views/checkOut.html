@@ -1,7 +1,7 @@
 ﻿<h2>Realizar Pedido</h2>
 <h4>Precio total: <span>{{cart.getTotalPrice() | currency}}</span></h4>
 <div class="row">
-    <div class=" col-xs-12 col-sm-6">
+    <div class=" col-xs-12 col-sm-8">
         <table class="invoice table">
             <thead>
                 <tr>
@@ -16,9 +16,9 @@
                 <tr>
                     <td>{{item.name}}</td>
                     <td>{{item.comment}} </td>
-                    <td>{{item.quantity}} ({{item.unit}})</td>
-                    <td>x {{item.price | currency}} <span ng-show="item.aproxPrice" class="text-danger">*</span></td>
-                    <td>{{item.price * item.quantity | currency}} <span ng-show="item.aproxPrice" class="text-danger">*</span></td>
+                    <td class="no-breaks">{{item.quantity}} ({{item.unit}})</td>
+                    <td class="no-breaks">x {{item.price | currency}} <span ng-show="item.aproxPrice" class="text-danger">*</span></td>
+                    <td class="no-breaks">{{item.price * item.quantity | currency}} <span ng-show="item.aproxPrice" class="text-danger">*</span></td>
                 </tr>
             </tbody>
             <tfoot>
@@ -30,7 +30,7 @@
             </tfoot>
         </table>
     </div>
-    <div class=" col-xs-12 col-sm-6">
+    <div class=" col-xs-12 col-sm-4">
         <form name="addUserForm">
             <div class="form-group">
                 <label for="name">Nombre</label>

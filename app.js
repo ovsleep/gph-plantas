@@ -14,6 +14,7 @@ var users = require('./routes/users');
 var products = require('./routes/products');
 var orders = require('./routes/orders');
 var auth = require('./routes/auth');
+var backend = require('./routes/backend');
 
 
 var app = express();
@@ -37,12 +38,39 @@ app.use(function(req,res,next){
     next();
 });
 
+app.all('/api/backend/*', function (req, res, next) {
+    console.log('admin');
+
+    var db = req.db;
+    var authorization = req.headers.authorization;
+
+    //get timestamp now - 180 minutes
+    var timestamp = new Date(Date.now() - 180*60000).getTime();
+
+    db.collection('administrators').findOne({ 'guid': authorization, timestamp: { $gt: timestamp } }, function (err, user) {
+        if (err) {
+            res.send(401, "Credenciales no validas.");
+            return;
+        }
+
+        if (!user) {
+            res.send(401, "Credenciales no validas.");
+            return;
+        }
+        console.log('OK!');
+        next();
+    });
+
+    console.log('do it after!');
+});
 
 app.use('/', routes);
 app.use('/api/users', users);
 app.use('/api/productos', products);
 app.use('/api/orders', orders);
 app.use('/api/auth', auth);
+
+app.use('/api/backend', backend);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

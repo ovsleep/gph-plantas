@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 var app = angular.module('GPHPlantas',
-    ['ngRoute', 'GPHPlantas.directives', 'GPHPlantas.services']);
+    ['ngRoute', 'GPHPlantas.directives', 'GPHPlantas.services', 'ui.bootstrap']);
 
 app.config(function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
@@ -63,24 +63,60 @@ app.run(function ($rootScope, $location, authenticationSvc) {
     });
 });
 
-app.controller('ProductController', ['$scope', 'products', 'cart',
-    function ($scope, products, cart) {
+app.controller('ProductController', ['$scope', 'products', 'cart', '$modal',
+    function ($scope, products, cart, $modal) {
         $scope.products = products;
         $scope.cart = cart;
         $scope.productAddingId = '';
         $scope.selectedUnit = '';
 
-        $scope.addProduct = function (product,selectedUnit, quantity, comment) {
-            cart.addItem(product, selectedUnit, quantity, comment);
-            $scope.productAddingId = '';
-            $scope.selectedUnit = '';
-        }
-
         $scope.startAdding = function (product) {
-            $scope.productAddingId = product._id;
-            $scope.selectedUnit = product.unit;
-        }
+            var modalInstance = $modal.open({
+                templateUrl: '/views/productModal.html',
+                controller: 'ProductModalInstanceCtrl',
+                size: 'sm',
+                resolve: {
+                    product: function () {
+                        return product;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+            }, function () {
+                console.log('Modal dismissed at: ' + new Date());
+            });
+        };
 }]);
+
+app.controller('ProductModalInstanceCtrl', function ($scope, $modalInstance, product, cart) {
+    $scope.product = product;
+    $scope.selectedUnit = $scope.product.unit;
+    $scope.selectedPrice = $scope.product.price;
+    $scope.quantity = 1;
+    $scope.comment = '';
+    $scope.aproxPrice = false;
+
+    $scope.$watch('selectedUnit', function (selectedUnit, oldValue) {
+        if (selectedUnit == $scope.product.unit) {
+            $scope.selectedPrice = $scope.product.price;
+            $scope.aproxPrice = false;
+        } else {
+            $scope.selectedPrice = $scope.product.price * 1 * $scope.product.unitWeight;
+            $scope.aproxPrice = true;
+        }
+    });
+
+
+    $scope.ok = function () {
+        cart.addItem($scope.product, $scope.selectedUnit, $scope.quantity, $scope.comment);
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});
 
 app.controller('RegisterController', ['$scope', '$location', 'authenticationSvc',
     function ($scope, $location, authenticationSvc) {

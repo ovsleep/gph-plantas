@@ -1,0 +1,28 @@
+﻿<div class="product-modal">
+    <h2>{{product.name}}</h2>
+    <p>{{product.description}}</p>
+    <div class="row">
+        <div class="col-xs-4">
+            <img ng-src="{{product.image}}" alt="..." class="product-img">
+            <span ng-show="aproxPrice" class="text-danger-small text-danger">* Precio aproximado</span>
+        </div>
+        <div class="col-xs-8">
+            <h3>{{selectedPrice | currency}} x ({{selectedUnit}}) <span ng-show="aproxPrice" class="text-danger">*</span></h3>
+            <div class="form-group" ng-show="product.unitSale">
+                <select class="form-control" ng-model="selectedUnit" ng-options="u for u in [product.unit, 'Unidad']" />
+            </div>
+            <div class="form-group">
+                <label>Cantidad</label>
+                <input type="number" class="form-control" ng-model="quantity" />
+            </div>
+        </div>
+    </div>
+    <div>
+        <label>Comentarios:</label>
+        <textarea cols="3" class="form-control" ng-model="comment"></textarea>
+    </div>
+    <br />
+    <div class="text-center">
+        <button class="btn btn-primary btn-lg" ng-click="ok()">Comparar</button>
+    </div>
+</div>
