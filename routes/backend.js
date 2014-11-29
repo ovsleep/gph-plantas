@@ -85,11 +85,15 @@ router.get('/products/listado/filtro/:type', function (req, res) {
 });
 
 router.post('/products/multiload', multipartMiddleware, function (req, res) {
+    console.log(req.files);
+    console.log(req.files.file.path);
     var stream = fs.createReadStream(req.files.file.path);
     var db = req.db;
     var idx = 0;
+    console.log('streamed');
     var csvStream = csv()
         .on("data", function (data) {
+            console.log('updating product...')
             if (idx > 0) { //skips first column
                 db.collection('products').update({
                     name: data[0]
