@@ -84,6 +84,24 @@ router.get('/products/listado/filtro/:type', function (req, res) {
     	});
 });
 
+router.post('/products/listado', function (req, res) {
+    console.log('listado post');
+    var db = req.db;
+    req.body.forEach(function (product) {
+        console.log('updating: ' + product._id);
+        var id = mongo.helper.toObjectID(product._id);
+        delete product._id;
+        db.collection('products').update({
+            _id: id
+        },
+        product,
+        function (err, result) {
+            if (err) throw err;
+            if (result) console.log('Updated!');
+        });
+    });
+});
+
 router.post('/products/multiload', multipartMiddleware, function (req, res) {
     console.log('ok');
     console.log(req.files);
@@ -104,7 +122,7 @@ router.post('/products/multiload', multipartMiddleware, function (req, res) {
                         name: data[0],
                         description: data[1],
                         price: data[2],
-                        unit: data[3],
+                        unit: data[3]
                     }
                 }
                 , { upsert: true }

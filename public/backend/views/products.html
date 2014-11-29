@@ -20,8 +20,8 @@
     <tbody>
         <tr ng-repeat="product in products | filter: search">
             <td>
-                <img ng-src="{{product.image}}" alt="..."><br />
                 <input ng-model="product.image" />
+                <img ng-src="{{product.image}}" alt="..."><br />
             </td>
             <td>
                 <input ng-model="product.name" />

@@ -1,8 +1,8 @@
-﻿app.controller('ProductsController', ['$scope', 'products',
-    function ($scope, products, cart) {
+﻿app.controller('ProductsController', ['$scope', 'products', 'Product',
+    function ($scope, products, Product) {
         $scope.products = products;
         $scope.units = ['Kilo', 'Gramo', 'Unidad'];
-
+        $scope.Product = Product;
         $scope.save = function (product) {
             product.$save(function (u, putResponseHeaders) {
                 //u => saved user object
@@ -12,7 +12,8 @@
         }
 
         $scope.saveAll = function () {
-            $scope.products.forEach(function (prod) { prod.$save(); });
+            Product.saveAll($scope.products);
+            //$scope.products.forEach(function (prod) { prod.$save(); });
 
             alert('Guardado!')
         }

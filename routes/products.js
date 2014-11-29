@@ -5,7 +5,7 @@ var mongo = require('mongoskin');
 
 router.get('/listado', function(req, res) {
     var db = req.db;
-    db.collection('products').find().toArray(function (err, items) {
+    db.collection('products').find({active: true}).toArray(function (err, items) {
         res.json(items);
     });
 });

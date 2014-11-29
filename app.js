@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 // Database
 var mongo = require('mongoskin');
-//var db = mongo.db("mongodb://localhost:27017/gph", {native_parser:true});
+console.log('connecting to: ' + process.env.MONGOLAB_URI);
 var db = mongo.db(process.env.MONGOLAB_URI, { native_parser: true });
 
 var routes = require('./routes/index');
@@ -42,26 +42,27 @@ app.use(function(req,res,next){
 app.all('/api/backend/*', function (req, res, next) {
     console.log('admin');
 
-    //var db = req.db;
-    //var authorization = req.headers.authorization;
+    var db = req.db;
+    var authorization = req.headers.authorization;
+    console.log(authorization);
 
-    ////get timestamp now - 180 minutes
-    //var timestamp = new Date(Date.now() - 180*60000).getTime();
+    //get timestamp now - 180 minutes
+    var timestamp = new Date(Date.now() - 180*60000).getTime();
 
-    //db.collection('administrators').findOne({ 'guid': authorization, timestamp: { $gt: timestamp } }, function (err, user) {
-    //    if (err) {
-    //        res.send(401, "Credenciales no validas.");
-    //        return;
-    //    }
+    db.collection('administrators').findOne({ 'guid': authorization, timestamp: { $gt: timestamp } }, function (err, user) {
+        if (err) {
+            res.send(401, "Credenciales no validas.");
+            return;
+        }
 
-    //    if (!user) {
-    //        res.send(401, "Credenciales no validas.");
-    //        return;
-    //    }
-    //    next();
-    //});
+        if (!user) {
+            res.send(401, "Credenciales no validas.");
+            return;
+        }
+        next();
+    });
 
-    next();
+    //next();
 });
 
 app.use('/', routes);
