@@ -23,17 +23,19 @@ router.post('/', function(req, res) {
         }
 
         mail.html = '<h3>Nuevo pedido</h3><table>'
-        mail.html = '<tr><td>Producto</td><td>Cantidad</td><td>Precio</td><td>Unidad</td></tr>'
+        mail.html = '<tr><td>Producto</td><td>Cantidad</td><td>Precio</td><td>Unidad</td><td>Comentarios</td></tr>'
         req.body.lines.forEach(function (prod) {
             mail.html += '<tr>'
             mail.html += '<td>' + prod.name + '</td>';
             mail.html += '<td>' + prod.quantity + '</td>';
             mail.html += '<td>' + prod.price + '</td>';
             mail.html += '<td>' + prod.unit + '</td>';
+            mail.html += '<td>' + prod.comment + '</td>';
             mail.html += '</tr>';
         })
 
         mail.html += '</table>'
+        mail.html += '<br/> Comentarios: ' + req.body.comment;
         mail.html += '<br/> Total: ' + req.body.totalPrice;
         mail.html += '<br/> Para: <br>'
         mail.html += '<ul>'
