@@ -1,1 +1,1 @@
-asd
+web: node bin/www 
