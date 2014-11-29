@@ -85,6 +85,7 @@ router.get('/products/listado/filtro/:type', function (req, res) {
 });
 
 router.post('/products/multiload', multipartMiddleware, function (req, res) {
+    console.log('ok');
     console.log(req.files);
     console.log(req.files.file.path);
     var stream = fs.createReadStream(req.files.file.path);
