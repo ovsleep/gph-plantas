@@ -35,7 +35,7 @@ router.post('/', function(req, res) {
         })
 
         mail.html += '</table>'
-        mail.html += '<br/> Comentarios: ' + req.body.comment;
+        mail.html += '<br/> Comentarios: ' + req.body.user.comments;
         mail.html += '<br/> Total: ' + req.body.totalPrice;
         mail.html += '<br/> Para: <br>'
         mail.html += '<ul>'
