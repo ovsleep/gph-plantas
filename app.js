@@ -60,6 +60,8 @@ app.all('/api/backend/*', function (req, res, next) {
     //    }
     //    next();
     //});
+
+    next();
 });
 
 app.use('/', routes);
