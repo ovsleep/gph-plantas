@@ -50,6 +50,9 @@ app.config(['$routeProvider', function ($routeProvider) {
           controller: 'ThankyouController',
           templateUrl: '/views/thankyou.html'
       })
+      .when('/como-comprar',{
+          templateUrl: '/views/comoComprar.html'
+      })
       .otherwise({ redirectTo: '/' });
 }]);
 
