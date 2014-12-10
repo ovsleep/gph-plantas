@@ -2,7 +2,7 @@
     <div ng-repeat="product in products" class="col-sm-4 col-md-3 col-lg-2" ng-click="startAdding(product)">
         <div class="thumbnail product">
             <span class="price">{{product.price | currency}} ({{product.unit}})</span>
-            <img ng-src="{{product.image}}" class="product-img" alt="...">
+            
             <div class="caption center-block">
                 <h3>{{product.name}}</h3>
             </div>
