@@ -46,6 +46,10 @@ app.config(['$routeProvider', function ($routeProvider) {
           controller: 'RegisterController',
           templateUrl: '/views/register.html'
       })
+      .when('/cuenta', {
+          controller: 'AccountController',
+          templateUrl: '/views/account.html'
+      })
       .when('/gracias',{
           controller: 'ThankyouController',
           templateUrl: '/views/thankyou.html'
@@ -121,14 +125,13 @@ app.controller('ProductModalInstanceCtrl', function ($scope, $modalInstance, pro
     };
 });
 
-app.controller('RegisterController', ['$scope', '$location', 'authenticationSvc',
-    function ($scope, $location, authenticationSvc) {
+app.controller('RegisterController', ['$scope', '$location', 'authenticationSvc',"$window",
+    function ($scope, $location, authenticationSvc,$window) {
         $scope.message = '';
 
         $scope.addUser = function () {
             authenticationSvc.register($scope.user)
            .then(function (result) {
-               $scope.userInfo = result;
                $location.path("/");
            }, function (error) {
                $window.alert("Ocurrió un error registrando el usuario: " + error);
@@ -136,6 +139,38 @@ app.controller('RegisterController', ['$scope', '$location', 'authenticationSvc'
            });
         }
     }]);
+
+app.controller('AccountController', ['$scope', '$location', 'authenticationSvc',"$window",
+    function ($scope, $location, authenticationSvc, $window) {
+        $scope.message = '';
+        $scope.user = authenticationSvc.getUserInfo();
+        $scope.changingPassword = false;
+
+        $scope.changePassword = function () {
+            $scope.changingPassword = true;
+        }
+
+        $scope.updateUser = function () {
+            authenticationSvc.updateUser($scope.user).then(function () {
+                $window.alert("Datos guardados con éxito!");
+                $location.path("/");
+            }, function (error) {
+                $window.alert("Ocurrió un error registrando el usuario: " + error);
+                console.log(error);
+            });
+        }
+        //$scope.addUser = function () {
+        //    authenticationSvc.register($scope.user)
+        //   .then(function (result) {
+        //       $scope.userInfo = result;
+        //       $location.path("/");
+        //   }, function (error) {
+        //       $window.alert("Ocurrió un error registrando el usuario: " + error);
+        //       console.log(error);
+        //   });
+        //}
+    }]);
+
 
 app.controller('MenuController', ['$scope', '$location',
 function ($scope, $location) {

@@ -124,6 +124,7 @@
     <Content Include="public\styles\bootstrap.css" />
     <Content Include="public\views\login.html" />
     <Content Include="public\views\productModal.html" />
+    <Content Include="public\views\account.html" />
     <Content Include="routes\backend.js" />
     <Content Include="views\error.jade" />
     <Content Include="views\index.jade" />

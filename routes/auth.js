@@ -90,7 +90,14 @@ router.post('/register', function (req, res) {
 
         if (!user) {
             db.collection('users').insert(usr, function (err, result) {
-                res.send({ accessToken: '123456', usr: result.name });
+                res.send({
+                    accessToken: '123456',
+                    usr: usr.name,
+                    email: usr.email,
+                    phone: usr.phone,
+                    address: usr.address,
+                    id: result._id
+                });
             });
             return;
         }
@@ -99,6 +106,47 @@ router.post('/register', function (req, res) {
             console.log("Ya existe un usuario con este correo.");
             return;
         }
+    });
+});
+
+router.post('/update', function (req, res) {
+    var db = req.db;
+    var usr = req.body.usr;
+    console.log(usr);
+    db.collection('users').findOne({ 'email': usr.email }, function (err, user) {
+        if (err) {
+            res.send(401, "Ocurrio un error al intentar ingresar.");
+            console.log("Ocurrio un error al intentar ingresar.")
+            return;
+        }
+
+        if (!user) {
+            res.send(401, "Usuario o Contraseña incorrecta.");
+            return;
+        }
+        if (usr.oldPassword && user.password != usr.oldPassword) {
+            res.send(401, "La contraseña no es correcta.");
+            return;
+        }
+
+        if (usr.newPassword) {
+            user.password = usr.newPassword;
+        }
+
+        user.name = usr.name;
+        user.phone = usr.phone;
+        user.address = usr.address;
+
+        db.collection('users').save(user, function (err, response) {
+            res.send({
+                accessToken: '123456',
+                usr: user.name,
+                email: user.email,
+                phone: user.phone,
+                address: user.address,
+                id: user._id
+            });
+        });
     });
 });
 

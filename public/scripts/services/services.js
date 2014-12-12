@@ -85,7 +85,13 @@ services.factory("authenticationSvc", ["$http","$q","$window",function ($http, $
             .then(function (result) {
                 userInfo = {
                     accessToken: result.data.accessToken,
-                    userName: result.data.usr
+                    usr: {
+                        name: result.data.usr,
+                        email: result.data.email,
+                        phone: result.data.phone,
+                        address: result.data.address,
+                        id: result.data.id
+                    }
                 };
                 $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
                 deferred.resolve(userInfo);
@@ -116,6 +122,30 @@ services.factory("authenticationSvc", ["$http","$q","$window",function ($http, $
         return deferred.promise;
     }
 
+    function updateUser(user) {
+        var deferred = $q.defer();
+
+        $http.post("/api/auth/update", { usr: user })
+            .then(function (result) {
+                userInfo = {
+                    accessToken: result.data.accessToken,
+                    usr: {
+                        name: result.data.usr,
+                        email: result.data.email,
+                        phone: result.data.phone,
+                        address: result.data.address,
+                        id: result.data.id
+                    }
+                };
+                $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+                deferred.resolve(userInfo);
+            }, function (error) {
+                deferred.reject(error);
+            });
+
+        return deferred.promise;
+    }
+
     function getUserInfo() {
         return userInfo ? userInfo.usr : undefined;
     }
@@ -131,6 +161,7 @@ services.factory("authenticationSvc", ["$http","$q","$window",function ($http, $
         register: register,
         login: login,
         logout: logout,
+        updateUser: updateUser,
         getUserInfo: getUserInfo
     };
 }]);
