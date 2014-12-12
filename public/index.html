@@ -48,7 +48,7 @@
                     <span class="glyphicon glyphicon-earphone"></span> <span>099989891</span>
                 </div>
                 <div class="pull-right" ng-controller="WelcomeController">
-                    <div ng-show="user"><span>{{user.name}}</span>,<a href="#" ng-click="logout()">salir</a></div>
+                    <div ng-show="user">Bienvenido, <a href="/#/cuenta">{{user.name}}</a> - <a href="#" ng-click="logout()">salir</a></div>
                     <div ng-hide="user"><a href="/#/login">ingresar</a></div>
                 </div>
             </div>
