@@ -43,26 +43,12 @@
     white-space: nowrap;
 }
 /*Slider*/
-.banner {
-    position: relative;
-    overflow: auto;
-    vertical-align: middle;
-    background-color: #FFF;
+.carousel-control.left, .carousel-control.right{
+    background-image: none;
 }
-
-.banner li {
-    list-style: none;
+.carousel-container{
+    padding-top: 10px;
 }
-
-.banner img {
-    width: auto;
-    height: 300px;
-}
-
-.banner ul li {
-    float: left;
-}
-
 /**********/
 
 /*#region NavBar */
@@ -193,6 +179,16 @@ padding: 16px 15px 16px 14px;
 }
 /*#endregion */
 
+/*#region Products list */
+.products-list{
+    font-size:14px;
+}
+
+.products-list .glyphicon{
+    font-size:20px;
+}
+
+/*#endregion */
 /*#region Product modal */
 .product-modal{
     padding: 10px;

@@ -17,8 +17,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
 
     <!--Bootstrap Directives-->
+    <!--<script src="js/ui-bootstrap-tpls-0.12.0.js"></script>-->
     <script src="js/ui-bootstrap-tpls-0.11.2.min.js"></script>
-
     <script src="/scripts/directives/directives.js"></script>
     <script src="scripts/services/shoppingCart.js"></script>
     <script src="scripts/services/services.js"></script>
@@ -53,26 +53,24 @@
                 </div>
             </div>
             <div class="row header">
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12 col-md-4">
                     <img src="images/site/TituloPuestoencasa1.png" />
                 </div>
-                <div class="col-md-6">
-                    <!--<div class="banner">
-                        <ul>
-                            <li>
-                                <img src="http://dummyimage.com/450x300/AAA/FFF.png&text=Slider+1" />
-                            </li>
-                            <li>
-                                <img src="http://dummyimage.com/450x300/AAA/FFF.png&text=Slider+2" />
-                            </li>
-                            <li>
-                                <img src="http://dummyimage.com/450x300/AAA/FFF.png&text=Slider+3" />
-                            </li>
-                            <li>
-                                <img src="http://dummyimage.com/450x300/AAA/FFF.png&text=Slider+4" />
-                            </li>
-                        </ul>
-                    </div>-->
+                <div class="col-md-7">
+                    <div ng-controller="CarouselDemoCtrl" class="carousel-container">
+                        <div style="height: 305px">
+                            <carousel interval="myInterval">
+                                <slide ng-repeat="slide in slides" active="slide.active">
+                                    <img ng-src="{{slide.image}}" style="margin:auto;">
+                                    <div class="carousel-caption">
+                                        <h4>Slide {{$index}}</h4>
+                                        <p>{{slide.text}}</p>
+                                    </div>
+                                </slide>
+                            </carousel>
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
             <div class="content">
@@ -96,10 +94,21 @@
                                 <li class="dropdown">
                                     <a href="" class="dropdown-toggle" data-toggle="dropdown">Productos <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#/">Todos</a></li>
                                         <li><a href="#/filtro/verduras">Verduras</a></li>
                                         <li><a href="#/filtro/frutas">Frutas</a></li>
                                         <li><a href="#/filtro/plantas">Plantas y Flores</a></li>
                                         <li><a href="#">Combos</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Listado <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#/listado/">Todos</a></li>
+                                        <li><a href="#/listado/filtro/verduras">Verduras</a></li>
+                                        <li><a href="#/listado/filtro/frutas">Frutas</a></li>
+                                        <li><a href="#/listado/filtro/plantas">Plantas y Flores</a></li>
+                                        <li><a href="#/listado/">Combos</a></li>
                                     </ul>
                                 </li>
                                 <li ng-class="{ active : isActive('/contacto')}"><a href="#/contacto">Contacto</a></li>

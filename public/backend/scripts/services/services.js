@@ -53,11 +53,17 @@ services.factory('MultiProductLoader', ['Product', '$q', function (Product, $q) 
 }]);
 
 services.factory('Order', ['$resource', function ($resource) {
-    return $resource('/api/backend/orders/:_id', { _id: '@_id' });
+    return $resource('/api/backend/orders/:_id', 
+        { _id: '@_id' }, 
+        { exportToCsv: { method: 'POST', isArray: true } });
 }]);
 
 services.factory('OrderByStatus', ['$resource', function ($resource) {
     return $resource('/api/backend/orders/filter/:status', { type: '@status' });
+}]);
+
+services.factory('OrderExport', ['$resource', function ($resource) {
+    return $resource('/api/backend/orders/export', { _id: '@_id' }, { exportToCsv: { method: 'POST' } });
 }]);
 
 services.factory('OrderByStatusLoader', ['OrderByStatus', '$route', '$q', function (OrderByStatus, $route, $q) {

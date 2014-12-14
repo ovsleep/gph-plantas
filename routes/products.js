@@ -5,7 +5,7 @@ var mongo = require('mongoskin');
 
 router.get('/listado', function(req, res) {
     var db = req.db;
-    db.collection('products').find({active: true}).toArray(function (err, items) {
+    db.collection('products').find({ active: true }).sort({ name: 1 }).toArray(function (err, items) {
         res.json(items);
     });
 });
@@ -25,7 +25,7 @@ router.get('/listado/filtro/:type', function(req, res) {
     var prodType = req.params.type;
     db.collection('products').find(
     		{ 'type': prodType }
-    	).toArray(function (err, items) {
+    	).sort({ name: 1 }).toArray(function (err, items) {
         
         res.json(items);
     });
