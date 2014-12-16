@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var mongo = require('mongoskin');
 console.log('connecting to: ' + process.env.MONGOLAB_URI);
 var db = mongo.db(process.env.MONGOLAB_URI, { native_parser: true });
+//var db = mongo.db("mongodb://localhost:27017/gph", { native_parser: true });
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -59,6 +60,7 @@ app.all('/api/backend/*', function (req, res, next) {
             res.send(401, "Credenciales no validas.");
             return;
         }
+        console.log('next!');
         next();
     });
 

@@ -27,6 +27,24 @@ app.config(['$routeProvider', function ($routeProvider) {
           },
           templateUrl: '/views/products.html'
       })
+      .when('/listado', {
+          controller: 'ProductController',
+          resolve: {
+              products: ["MultiProductLoader", function (MultiProductLoader) {
+                  return MultiProductLoader();
+              }]
+          },
+          templateUrl: '/views/productsList.html'
+      })
+      .when('/listado/filtro/:type', {
+        controller: 'ProductController',
+        resolve: {
+            products: ["ProductByTypeLoader", function (ProductByTypeLoader) {
+                return ProductByTypeLoader();
+            }]
+        },
+        templateUrl: '/views/productsList.html'
+      })
       .when('/carrito', {
           controller: 'FullCartController',
           templateUrl: '/views/cart.html'
@@ -278,3 +296,18 @@ function ($scope, $location, auth) {
 
 }]);
 
+app.controller('CarouselDemoCtrl', function ($scope) {
+    $scope.myInterval = 5000;
+    var slides = $scope.slides = [];
+    $scope.addSlide = function () {
+        var newWidth = 600 + slides.length + 1;
+        slides.push({
+            image: 'http://placekitten.com/' + newWidth + '/300',
+            text: ['More', 'Extra', 'Lots of', 'Surplus'][slides.length % 4] + ' ' +
+              ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+        });
+    };
+    for (var i = 0; i < 4; i++) {
+        $scope.addSlide();
+    }
+});

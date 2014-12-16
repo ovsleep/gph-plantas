@@ -1,0 +1,10 @@
+﻿<div class="products-list">
+    <table class="table">
+        <tr ng-repeat="product in products" >
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+            <td><span class="price">{{product.price | currency}} ({{product.unit}})</span></td>
+            <td class="text-right"><a href="" ng-click="startAdding(product)"><span class="glyphicon glyphicon-shopping-cart"></span></a></td>
+        </tr>
+    </table>
+</div>

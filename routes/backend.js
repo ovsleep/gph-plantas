@@ -16,6 +16,44 @@ router.get('/orders', function (req, res) {
     });
 });
 
+router.post('/orders/export', function (req, res) {
+    var db = req.db;
+    orders = req.body;
+    orders = orders.map(function (id) { return mongo.helper.toObjectID(id) });
+    console.log(orders);
+    db.collection('orders').find({ _id: { $in: orders } }).toArray(function (err, items) {
+        var transformed = [];
+        var allNames = items.map(function (order) { return order.user.name });
+        items.forEach(function (item) {
+            var name = item.user.name;
+            item.lines.forEach(function (prod) {
+                var line = transformed.filter(function (elem) {
+                    return elem.Producto == prod.name;
+                })[0];
+                var newLine = false;
+                if (!line) {
+                    line = {};
+                    line.Producto = prod.name;
+                    allNames.forEach(function (name) { line[name] = '' });
+                    newLine = true;
+                }
+                
+                if (line[name] != '') {
+                    line[name] += ' | ';
+                }
+
+                line[name] += prod.quantity + ' ' + prod.unit;
+                if (newLine) {
+                    transformed.push(line);
+                }
+            })
+        })
+        console.log(transformed);
+        csv
+           .writeToStream(res, transformed, { headers: true });
+    });
+});
+
 router.post('/orders/:_id', function (req, res) {
     var db = req.db;
     //TODO: Check if valid user
@@ -27,6 +65,8 @@ router.post('/orders/:_id', function (req, res) {
 
     //console.log(req.body);
 });
+
+
 
 router.delete('/orders/:id', function (req, res) {
     var db = req.db;
