@@ -302,9 +302,8 @@ app.controller('CarouselDemoCtrl', function ($scope) {
     $scope.addSlide = function () {
         var newWidth = 600 + slides.length + 1;
         slides.push({
-            image: 'http://placekitten.com/' + newWidth + '/300',
-            text: ['More', 'Extra', 'Lots of', 'Surplus'][slides.length % 4] + ' ' +
-              ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+            image: 'images/sliderFinal/SliderF4' + newWidth + '/300',
+           
         });
     };
     for (var i = 0; i < 4; i++) {
