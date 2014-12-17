@@ -302,7 +302,7 @@ app.controller('CarouselDemoCtrl', function ($scope) {
     $scope.addSlide = function () {
         var newWidth = 600 + slides.length + 1;
         slides.push({
-            image: 'images/sliderFinal/SliderF4' + newWidth + '/300',
+            image: '/images/sliderFinal/SliderF4' + newWidth + '/300',
            
         });
     };
