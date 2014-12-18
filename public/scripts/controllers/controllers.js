@@ -304,7 +304,7 @@ app.controller('CarouselDemoCtrl', function ($scope) {
             image: imgUrl,
         });
     };
-    $scope.addSlide('/images/sliderfinal/SliderF4.png');
-    $scope.addSlide('/images/sliderfinal/Slider f 6.png');
-    $scope.addSlide('/images/sliderfinal/Fila0.png');
+    $scope.addSlide('/images/slider/s1.png');
+    $scope.addSlide('/images/slider/s2.png');
+    $scope.addSlide('/images/slider/s3.png');
 });
