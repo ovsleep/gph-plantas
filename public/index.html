@@ -26,121 +26,118 @@
     <!--<script src="scripts/global.js"></script>-->
 </head>
 <body>
-     <div class="main-container col-md-offset-1 col-xs-12 col-md-10">
-            <div class="top-bar">
-                <!--<div id="top-bar-right">
-                    <ul id="top_social">
-                        <li class="social_facebook">
-                            <a href="#" tooltip="facebook"><span>facebook</span></a>
-                        </li>
-                        <li class="social_twitter">
-                            <a href="#" tooltip="twitter"><span>twitter</span></a>
-                        </li>
-                        <li class="social_linkedin">
-                            <a href="#" tooltip="linkedin"><span>linkedin</span></a>
-                        </li>
-                        <li class="social_rss">
-                            <a href="#" tooltip="linkedin"><span>linkedin</span></a>
-                        </li>
-                    </ul>
-                </div>-->
-                <div class="pull-left">
-                    <span class="glyphicon glyphicon-earphone"></span> <span>099989891</span>
-                </div>
-                <div class="pull-right" ng-controller="WelcomeController">
-                    <div ng-show="user">Bienvenido, <a href="/#/cuenta">{{user.name}}</a> - <a href="#" ng-click="logout()">salir</a></div>
-                    <div ng-hide="user"><a href="/#/login">ingresar</a></div>
-                </div>
+    <div class="main-container col-sm-12 col-md-offset-1  col-md-10">
+        <div class="top-bar">
+            <!--<div id="top-bar-right">
+                <ul id="top_social">
+                    <li class="social_facebook">
+                        <a href="#" tooltip="facebook"><span>facebook</span></a>
+                    </li>
+                    <li class="social_twitter">
+                        <a href="#" tooltip="twitter"><span>twitter</span></a>
+                    </li>
+                    <li class="social_linkedin">
+                        <a href="#" tooltip="linkedin"><span>linkedin</span></a>
+                    </li>
+                    <li class="social_rss">
+                        <a href="#" tooltip="linkedin"><span>linkedin</span></a>
+                    </li>
+                </ul>
+            </div>-->
+            <div class="pull-left">
+                <span class="glyphicon glyphicon-earphone"></span> <span>099989891</span>
             </div>
-            <div class="row header">
-                <div class="col-xs-12 col-md-4">
-                    <img src="images/site/TituloPuestoencasa1.png" />
-                </div>
-                <div class="col-md-7">
-                    <div ng-controller="CarouselDemoCtrl" class="carousel-container">
-                        <div style="height: 305px">
-                            <carousel interval="myInterval">
-                                <slide ng-repeat="slide in slides" active="slide.active">
-                                    <img ng-src="{{slide.image}}" style="margin:auto;">
-                                    <div class="carousel-caption">
-                                        <h4>Slide {{$index}}</h4>
-                                        <p>{{slide.text}}</p>
-                                    </div>
-                                </slide>
-                            </carousel>
-                        </div>
-                        
+            <div class="pull-right" ng-controller="WelcomeController">
+                <div ng-show="user">Bienvenido, <a href="/#/cuenta">{{user.name}}</a> - <a href="#" ng-click="logout()">salir</a></div>
+                <div ng-hide="user"><a href="/#/login">ingresar</a></div>
+            </div>
+        </div>
+        <div class="row header">
+            <div class="col-xs-4">
+                <img src="images/site/TituloPuestoencasa1.png" class="img-responsive" />
+            </div>
+            <div class="col-xs-7">
+                <div ng-controller="CarouselDemoCtrl" class="carousel-container">
+                    <div>
+                        <carousel interval="myInterval">
+                            <slide ng-repeat="slide in slides" active="slide.active">
+                                <img ng-src="{{slide.image}}" class="img-responsive" style="margin:auto">
+
+                            </slide>
+                        </carousel>
                     </div>
-                </div>
-            </div>
-            <div class="content">
-                <nav class="navbar navbar-default" role="navigation">
-                    <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <!--<a class="navbar-brand" href="#">GPH</a>-->
-                        </div>
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="MenuController">
-                            <ul class="nav navbar-nav navbar-left">
-                                <li ng-class="{ active : isActive('/')}"><a href="#/">Inicio</a></li>
-                                <li class="dropdown">
-                                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Productos <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#/">Todos</a></li>
-                                        <li><a href="#/filtro/verduras">Verduras</a></li>
-                                        <li><a href="#/filtro/frutas">Frutas</a></li>
-                                        <li><a href="#/filtro/plantas">Plantas y Flores</a></li>
-                                        <li><a href="#">Combos</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Listado <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#/listado/">Todos</a></li>
-                                        <li><a href="#/listado/filtro/verduras">Verduras</a></li>
-                                        <li><a href="#/listado/filtro/frutas">Frutas</a></li>
-                                        <li><a href="#/listado/filtro/plantas">Plantas y Flores</a></li>
-                                        <li><a href="#/listado/">Combos</a></li>
-                                    </ul>
-                                </li>
-                                <li ng-class="{ active : isActive('/contacto')}"><a href="#/contacto">Contacto</a></li>
-                                <li ng-class="{ active : isActive('/como-comprar')}"><a href="#/como-comprar">Cómo comprar?</a></li>
-                                <li ng-class="{ active : isActive('/registro')}"><a href="#/registro">Registrarse</a></li>
-                                <li class="pull-right">
-
-                                </li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <div class="menu-cart" ng-controller="CartController">
-                                        <a class="mycart" href="#/carrito">Mi Carrito : <span class="simpleCart_quantity">{{cart.getTotalCount()}}</span> item(s)</a>
-                                        Precio Total: <span class="simpleCart_total">{{cart.getTotalPrice() | currency}}</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-
-                    </div><!-- /.container-fluid -->
-                </nav>
-
-                <div ng-view></div>
-            </div>
-            <div class="bottom-bar">
-                <div class="pull-left">
-                    © 2014 gph-plantas.com
-                </div>
-                <div class="pull-right">
-                    powered by <a href="mailto:ovsleep@gmail.com">ovsleep</a>
                 </div>
             </div>
         </div>
+        <div class="content">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!--<a class="navbar-brand" href="#">GPH</a>-->
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="MenuController">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li ng-class="{ active : isActive('/')}"><a href="#/">Inicio</a></li>
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">Productos <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#/">Todos</a></li>
+                                    <li><a href="#/filtro/verduras">Verduras</a></li>
+                                    <li><a href="#/filtro/frutas">Frutas</a></li>
+                                    <li><a href="#/filtro/plantas">Plantas y Flores</a></li>
+                                    <li><a href="#">Combos</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">Listado <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#/listado/">Todos</a></li>
+                                    <li><a href="#/listado/filtro/verduras">Verduras</a></li>
+                                    <li><a href="#/listado/filtro/frutas">Frutas</a></li>
+                                    <li><a href="#/listado/filtro/plantas">Plantas y Flores</a></li>
+                                    <li><a href="#/listado/">Combos</a></li>
+                                </ul>
+                            </li>
+                            <li ng-class="{ active : isActive('/contacto')}"><a href="#/contacto">Contacto</a></li>
+                            <li ng-class="{ active : isActive('/como-comprar')}"><a href="#/como-comprar">Cómo comprar?</a></li>
+                            <!--<li ng-class="{ active : isActive('/registro')}"><a href="#/registro">Registrarse</a></li>-->
+                            <li class="pull-right">
+
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <div class="menu-cart" ng-controller="CartController">
+                                    <a class="mycart" href="#/carrito">Mi Carrito : <span class="simpleCart_quantity">{{cart.getTotalCount()}}</span> item(s)</a>
+                                    Precio Total: <span class="simpleCart_total">{{cart.getTotalPrice() | currency}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+
+                </div><!-- /.container-fluid -->
+            </nav>
+
+            <div ng-view></div>
+        </div>
+        <div class="bottom-bar">
+            <div class="pull-left">
+                © 2014 gph-plantas.com
+            </div>
+            <div class="pull-right">
+                powered by <a href="mailto:ovsleep@gmail.com">ovsleep</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

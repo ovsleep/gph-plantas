@@ -1,7 +1,7 @@
 ﻿app.controller('ProductsController', ['$scope', 'products', 'Product',
     function ($scope, products, Product) {
         $scope.products = products;
-        $scope.units = ['Kilo', 'Gramo', 'Unidad'];
+        $scope.units = ['Atado', 'Bandeja', 'Bolsa', 'Gramo', 'Gusto', 'Kilo', 'Unidad'];
         $scope.Product = Product;
         $scope.save = function (product) {
             product.$save(function (u, putResponseHeaders) {

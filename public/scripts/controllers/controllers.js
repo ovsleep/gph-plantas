@@ -297,16 +297,14 @@ function ($scope, $location, auth) {
 }]);
 
 app.controller('CarouselDemoCtrl', function ($scope) {
-    $scope.myInterval = 5000;
+    $scope.myInterval = 3000;
     var slides = $scope.slides = [];
     $scope.addSlide = function (imgUrl) {
-        var newWidth = 600 + slides.length + 1;
         slides.push({
             image: imgUrl,
         });
     };
-    $scope.addSlide('/images/site/slider1.png');
-    $scope.addSlide('/images/site/slider2.png');
-    $scope.addSlide('/images/site/slider3.png');
-    $scope.addSlide('/images/site/slider4.png');
+    $scope.addSlide('/images/sliderfinal/SliderF4.png');
+    $scope.addSlide('/images/sliderfinal/Slider f 6.png');
+    $scope.addSlide('/images/sliderfinal/Fila0.png');
 });
