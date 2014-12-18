@@ -297,7 +297,7 @@ function ($scope, $location, auth) {
 }]);
 
 app.controller('CarouselDemoCtrl', function ($scope) {
-    $scope.myInterval = 3000;
+    $scope.myInterval = 4000;
     var slides = $scope.slides = [];
     $scope.addSlide = function (imgUrl) {
         slides.push({
