@@ -299,15 +299,14 @@ function ($scope, $location, auth) {
 app.controller('CarouselDemoCtrl', function ($scope) {
     $scope.myInterval = 5000;
     var slides = $scope.slides = [];
-    $scope.addSlide = function () {
+    $scope.addSlide = function (imgUrl) {
         var newWidth = 600 + slides.length + 1;
         slides.push({
-            image: 'http://placekitten.com/' + newWidth + '/300',
-            text: ['More', 'Extra', 'Lots of', 'Surplus'][slides.length % 4] + ' ' +
-              ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+            image: imgUrl,
         });
     };
-    for (var i = 0; i < 4; i++) {
-        $scope.addSlide();
-    }
+    $scope.addSlide('/images/site/slider1.png');
+    $scope.addSlide('/images/site/slider2.png');
+    $scope.addSlide('/images/site/slider3.png');
+    $scope.addSlide('/images/site/slider4.png');
 });
