@@ -73,7 +73,7 @@ app.config(['$routeProvider', function ($routeProvider) {
           templateUrl: '/views/thankyou.html'
       })
       .when('/como-comprar',{
-          templateUrl: '/views/comoComprar.html'
+          templateUrl: '/views/Instrucciones.html'
       })
       .otherwise({ redirectTo: '/' });
 }]);
