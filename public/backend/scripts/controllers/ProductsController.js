@@ -4,11 +4,11 @@
         $scope.units = ['Atado', 'Bandeja', 'Bolsa', 'Gramo', 'Gusto', 'Kilo', 'Unidad'];
         $scope.Product = Product;
         $scope.save = function (product) {
-            product.$save(function (u, putResponseHeaders) {
-                //u => saved user object
-                //putResponseHeaders => $http header getter
-                alert(u);
+            Product.save(product, function () {
+                alert('Guardado!');
             });
+            //product.$save(function () {
+            //});
         }
 
         $scope.remove = function (index) {
@@ -16,9 +16,9 @@
             product.$delete();
         }
         $scope.saveAll = function () {
-            Product.saveAll($scope.products);
+            Product.saveAll($scope.products, function (a, b) {
+                alert('Guardado!')
+            });
             //$scope.products.forEach(function (prod) { prod.$save(); });
-
-            alert('Guardado!')
         }
     }]);

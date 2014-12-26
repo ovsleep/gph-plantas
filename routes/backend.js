@@ -66,8 +66,6 @@ router.post('/orders/:_id', function (req, res) {
     //console.log(req.body);
 });
 
-
-
 router.delete('/orders/:id', function (req, res) {
     var db = req.db;
     //TODO: Check if valid user
@@ -78,7 +76,6 @@ router.delete('/orders/:id', function (req, res) {
         if (result) console.log('Deleted!');
     });
 });
-
 
 router.get('/orders/filter/:status', function (req, res) {
     var db = req.db;
@@ -92,7 +89,6 @@ router.get('/orders/filter/:status', function (req, res) {
     	    res.json(items);
     	});
 });
-
 /***********************************************/
 
 /*********** Products **************/
@@ -200,6 +196,32 @@ router.post('/products/:_id', function (req, res) {
     }, function (err, result) {
         if (err) throw err;
         if (result) console.log('Updated!');
+    });
+});
+
+router.post('/products/listado/:_id', function (req, res) {
+    var db = req.db;
+    db.collection('products').update({
+        _id: mongo.helper.toObjectID(req.body._id)
+    },
+    {
+        '$set': {
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            unit: req.body.unit,
+            unitSale: req.body.unitSale,
+            unitWeight: req.body.unitWeight,
+            type: req.body.type,
+            active: req.body.active,
+            image: req.body.image
+        }
+    }, function (err, result) {
+        if (err) throw err;
+        if (result) {
+            console.log('Updated!')
+            res.json({ message: 'Updated!' });
+        };
     });
 });
 
