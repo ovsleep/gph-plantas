@@ -3,7 +3,7 @@
 var services = angular.module('GPHPlantasBackend.services', ['ngResource']);
 
 services.factory('Product', ['$resource', function ($resource) {
-    return $resource('/api/backend/products/listado/:id', { id: '@id' }, {
+    return $resource('/api/backend/products/listado/:_id', { _id: '@_id' }, {
         saveAll: {method: 'POST', isArray:true}
     });
 }]);

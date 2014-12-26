@@ -11,6 +11,10 @@
             });
         }
 
+        $scope.remove = function (index) {
+            var product = $scope.products.splice(index, 1)[0];
+            product.$delete();
+        }
         $scope.saveAll = function () {
             Product.saveAll($scope.products);
             //$scope.products.forEach(function (prod) { prod.$save(); });

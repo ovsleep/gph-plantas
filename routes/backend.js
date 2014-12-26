@@ -180,7 +180,6 @@ router.post('/products/multiload', multipartMiddleware, function (req, res) {
     stream.pipe(csvStream);
 });
 
-
 router.post('/products/:_id', function (req, res) {
     var db = req.db;
     db.collection('products').update({
@@ -201,6 +200,18 @@ router.post('/products/:_id', function (req, res) {
     }, function (err, result) {
         if (err) throw err;
         if (result) console.log('Updated!');
+    });
+});
+
+router.delete('/products/listado/:id', function (req, res) {
+    var db = req.db;
+    //TODO: Check if valid user
+    console.log(req.params);
+    var productToDelete = req.params.id;
+    console.log('deleting: ' + productToDelete)
+    db.collection('products').removeById(productToDelete, function (err, result) {
+        if (err) throw err;
+        if (result) console.log('Deleted!');
     });
 });
 /***********************************************/
