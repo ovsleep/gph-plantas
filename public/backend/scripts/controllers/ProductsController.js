@@ -16,8 +16,8 @@
             product.$delete();
         }
         $scope.saveAll = function () {
-            Product.saveAll($scope.products, function (a, b) {
-                alert('Guardado!')
+            Product.saveAll($scope.products, function () {
+            alert('Guardado!')
             });
             //$scope.products.forEach(function (prod) { prod.$save(); });
         }

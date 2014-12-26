@@ -133,7 +133,10 @@ router.post('/products/listado', function (req, res) {
         product,
         function (err, result) {
             if (err) throw err;
-            if (result) console.log('Updated!');
+            if (result) {
+                console.log('Updated!')
+                res.json({ message: 'Updated!' });
+            };
         });
     });
 });
