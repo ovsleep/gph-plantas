@@ -207,6 +207,12 @@ width: 400px;
 .product-modal .text-danger-small{
     font-size: 11px;
 }
+
+input.ng-invalid, input.ng-invalid:focus {
+border-color: #a94442;
+-webkit-box-shadow: inset  0 2px 2px rgba(0,0,0,.075);
+box-shadow: inset 0 2px 2px rgba(0,0,0,.075);
+}
 /*#endregion */
 
 /*#region Carrito */

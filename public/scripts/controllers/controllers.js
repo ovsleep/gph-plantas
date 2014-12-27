@@ -136,9 +136,15 @@ app.controller('ProductModalInstanceCtrl', function ($scope, $modalInstance, pro
     });
 
 
-    $scope.ok = function () {
-        cart.addItem($scope.product, $scope.selectedUnit, $scope.quantity, $scope.comment);
-        $modalInstance.close();
+    $scope.submit = function (productForm) {
+        if (productForm.quantity.$valid) {
+            cart.addItem($scope.product, $scope.selectedUnit, $scope.quantity, $scope.comment);
+            $modalInstance.close();
+        }
+        else {
+            alert('Valor incorrecto.');
+            console.log(productForm.quantity.$error)
+        }
     };
 
     $scope.cancel = function () {
