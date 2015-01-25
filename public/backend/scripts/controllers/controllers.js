@@ -59,11 +59,23 @@ app.config(['$routeProvider', function ($routeProvider) {
             requiresLogin: true
         }
     })
-      .when('/login', {
-          controller: 'LoginController',
-          templateUrl: '/backend/views/login.html',
-      })
-      .otherwise({ redirectTo: '/' });
+    .when('/usuarios', {
+        controller: 'UsersController',
+        templateUrl: '/backend/views/users.html',
+        resolve: {
+            users: ["MultiUserLoader", function (MultiUserLoader) {
+                return MultiUserLoader();
+            }]
+        },
+        access: {
+            requiresLogin: true
+        }
+    })
+    .when('/login', {
+        controller: 'LoginController',
+        templateUrl: '/backend/views/login.html',
+    })
+    .otherwise({ redirectTo: '/' });
 }]);
 
 app.run(function ($rootScope, $location, authenticationSvc) {

@@ -242,4 +242,24 @@ router.delete('/products/listado/:id', function (req, res) {
 });
 /***********************************************/
 
+/*********** Users **************/
+router.get('/users', function (req, res) {
+    var db = req.db;
+    db.collection('users').find().toArray(function (err, items) {
+        res.json(items);
+    });
+});
+
+router.get('/users/:id', function (req, res) {
+    var db = req.db;
+    var userId = req.params.id;
+    db.collection('users').find(
+            { '_id': userId }
+        ).toArray(function (err, items) {
+            res.json(items);
+        });
+});
+
+/***********************************************/
+
 module.exports = router;

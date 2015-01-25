@@ -8,13 +8,6 @@ services.factory('Product', ['$resource', function ($resource) {
     });
 }]);
 
-//services.factory('ProductBatch', ['$resource', function ($resource) {
-//    return $resource('/api/backend/products/', { id: '@id' }, {
-//        saveAll: { method: 'POST', isArray: true }
-//    });
-//}]);
-
-
 services.factory('ProductLoader', ['Product', '$route', '$q', function (Product, $route, $q) {
     return function () {
         var delay = $q.defer();
@@ -83,6 +76,25 @@ services.factory('MultiOrderLoader', ['Order', '$q', function (Order, $q) {
             delay.resolve(orders);
         }, function () {
             delay.reject('Problemas obteniendo los pedidos');
+        });
+
+        return delay.promise;
+    }
+}]);
+
+services.factory('User', ['$resource', function ($resource) {
+    return $resource('/api/backend/users/:_id', { _id: '@_id' }, {
+        saveAll: { method: 'POST' }
+    });
+}]);
+
+services.factory('MultiUserLoader', ['User', '$q', function (User, $q) {
+    return function () {
+        var delay = $q.defer();
+        User.query(function (users) {
+            delay.resolve(users);
+        }, function () {
+            delay.reject('Problemas obteniendo los usuarios');
         });
 
         return delay.promise;
