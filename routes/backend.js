@@ -151,14 +151,15 @@ router.post('/products/multiload', multipartMiddleware, function (req, res) {
     console.log('streamed');
     var csvStream = csv()
         .on("data", function (data) {
+            var name = data[0].trim();
             console.log('updating product...')
             if (idx > 0) { //skips first column
                 db.collection('products').update({
-                    name: data[0]
+                    name: name
                 },
                 {
                     '$set': {
-                        name: data[0],
+                        name: name,
                         description: data[1],
                         price: data[2],
                         unit: data[3]

@@ -85,9 +85,10 @@ app.run(function ($rootScope, $location, authenticationSvc) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         if (next.access) {
             if (!authenticationSvc.getUserInfo()) {
-                    $location.path("/login");
-                }
+                authenticationSvc.refUrl = $location.path();
+                $location.path("/login");
             }
+        }
     });
 });
 
@@ -278,7 +279,7 @@ app.controller("LoginController", ["$scope", "$location", "$window", "authentica
         authenticationSvc.login($scope.userName, $scope.password)
             .then(function (result) {
                 $scope.userInfo = result;
-                $location.path("/");
+                $location.path(authenticationSvc.refUrl);
             }, function (error) {
                 $window.alert("Invalid credentials");
                 console.log(error);

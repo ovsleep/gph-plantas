@@ -53,6 +53,7 @@ services.factory('Order', ['$resource', function ($resource) {
 
 services.factory("authenticationSvc", ["$http","$q","$window",function ($http, $q, $window) {
     var userInfo;
+    var refUrl;
 
     function login(userName, password) {
         var deferred = $q.defer();
@@ -162,7 +163,8 @@ services.factory("authenticationSvc", ["$http","$q","$window",function ($http, $
         login: login,
         logout: logout,
         updateUser: updateUser,
-        getUserInfo: getUserInfo
+        getUserInfo: getUserInfo,
+        refUrl: refUrl
     };
 }]);
 

@@ -55,5 +55,25 @@ router.post('/', function(req, res) {
     });
 });
 
+router.get('/:id', function (req, res) {
+    var db = req.db;
+    var orderId = req.params.id;
+    db.collection('orders').find(
+        { _id: mongo.helper.toObjectID(orderId) }
+    ).toArray(function (err, items) {
+        res.json(items);
+    });
+});
+
+router.get('/previous/:userId', function (req, res) {
+    var db = req.db;
+    var userId = req.params.userId;
+    db.collection('orders').find(
+        { 'user.id': userId }
+    ).toArray(function (err, items) {
+        res.json(items);
+    });
+});
+
 
 module.exports = router;
