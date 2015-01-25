@@ -1,5 +1,6 @@
 ﻿app.controller('OrdersController', ['$scope', 'orders', 'OrderExport','$http',
     function ($scope, orders, OrderExport, $http) {
+        
         $scope.setOrderStatus = function (order, status) {
             order.status = status;
             order.$save();
@@ -36,8 +37,14 @@
                 var success = false;
                 // Get the headers
                 headers = headers();
-                // Get the filename from the x-filename header or default to "download.bin"
-                var filename = headers['x-filename'] || 'pedidos.csv';
+
+                var date = new Date();
+                var yyyy = date.getFullYear().toString();
+                var mm = (date.getMonth() + 1).toString(); // getMonth() is zero-based
+                var dd = date.getDate().toString();
+                var ss = date.getSeconds().toString();
+                var filename = 'pedidos.' + yyyy + (mm[1] ? mm : "0" + mm[0]) + (dd[1] ? dd : "0" + dd[0]) + ss + '.csv'; // padding
+
                 // Determine the content type from the header or default to "application/octet-stream"
                 var contentType = headers['content-type'] || octetStreamMime;
                 try {
