@@ -56,6 +56,14 @@ app.config(['$routeProvider', function ($routeProvider) {
                 requiresLogin: true
             }
       })
+    .when('/repetir-pedido', {
+        controller: 'OrderController',
+        templateUrl: '/views/orders.html',
+        access: {
+            requiresLogin: true
+        }
+    })
+    
        .when('/login', {
             controller: 'LoginController',
             templateUrl: '/views/login.html'
@@ -323,3 +331,9 @@ app.controller('CarouselDemoCtrl', function ($scope) {
     $scope.addSlide('/images/slider/Slider6.png');
     
 });
+
+app.controller('OrderController', ['$scope', 'Order', 'cart',
+    function ($scope, Order, cart) {
+        $scope.orders = Order.previous();
+    }
+]);

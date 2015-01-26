@@ -8,8 +8,8 @@ var bodyParser = require('body-parser');
 // Database
 var mongo = require('mongoskin');
 console.log('connecting to: ' + process.env.MONGOLAB_URI);
-var db = mongo.db(process.env.MONGOLAB_URI, { native_parser: true });
-//var db = mongo.db("mongodb://localhost:27017/gph", { native_parser: true });
+//var db = mongo.db(process.env.MONGOLAB_URI, { native_parser: true });
+var db = mongo.db("mongodb://localhost:27017/gph", { native_parser: true });
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

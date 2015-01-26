@@ -68,8 +68,9 @@ router.get('/:id', function (req, res) {
 router.get('/previous/:userId', function (req, res) {
     var db = req.db;
     var userId = req.params.userId;
+    console.log(userId);
     db.collection('orders').find(
-        { 'user.id': userId }
+        { "user.id": userId.toString() }
     ).toArray(function (err, items) {
         res.json(items);
     });
