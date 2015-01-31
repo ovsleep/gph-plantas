@@ -213,6 +213,7 @@ function ($scope, $location) {
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();
     };
+    $scope.isCollapsed = false;
 }]);
 
 app.controller('CartController', ['$scope', 'cart',
@@ -287,7 +288,7 @@ app.controller("LoginController", ["$scope", "$location", "$window", "authentica
         authenticationSvc.login($scope.userName, $scope.password)
             .then(function (result) {
                 $scope.userInfo = result;
-                $location.path(authenticationSvc.refUrl);
+                $location.path(authenticationSvc.refUrl ? authenticationSvc.refUrl : '/#');
             }, function (error) {
                 $window.alert("Invalid credentials");
                 console.log(error);
@@ -307,6 +308,19 @@ function ($scope, $location, auth) {
         auth.logout();
         $location.path('/');
     }
+    $scope.status = {
+        isopen: false
+    };
+
+    $scope.toggled = function (open) {
+        $log.log('Dropdown is now: ', open);
+    };
+
+    $scope.toggleDropdown = function ($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.status.isopen = !$scope.status.isopen;
+    };
 
     $scope.$watch('auth.getUserInfo()', function (newVal) {
         $scope.user = newVal;

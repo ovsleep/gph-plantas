@@ -7,7 +7,7 @@
     Para repetir un pedido, sólo debes seleccionarlo y hacer click en "Repetir Pedido"
 </p>
 <br />
-<accordion close-others="true">
+<accordion close-others="false">
     <accordion-group ng-repeat="order in orders">
         <accordion-heading href="">
            Pedido {{order.date | date:'dd/MM/yyyy - H:mm'}} <span class="pull-right btn btn-info btn-no-padding">Ver pedido</span>
