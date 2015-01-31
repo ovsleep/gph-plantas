@@ -234,12 +234,13 @@
     <Content Include="public\images\Zapallo.png" />
     <Content Include="public\images\ZapalloCabutia.png" />
     <Content Include="public\images\Zucchini.png" />
-    <Content Include="public\js\ui-bootstrap-tpls-0.11.2.min.js" />
+    <Content Include="public\js\ui-bootstrap-tpls-0.12.0.js" />
     <Content Include="public\styles\bootstrap.css" />
     <Content Include="public\views\Contacto.html" />
     <Content Include="public\views\Instrucciones.html" />
     <Content Include="public\views\login.html" />
     <Content Include="public\views\orders.html" />
+    <Content Include="public\views\productMissingModal.html" />
     <Content Include="public\views\productModal.html" />
     <Content Include="public\views\account.html" />
     <Content Include="public\views\productsList.html" />
