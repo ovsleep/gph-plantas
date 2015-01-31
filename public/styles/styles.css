@@ -2,8 +2,10 @@
     background: #000000;
     background-image: url(https://lh6.googleusercontent.com/-ZJX9YzJQvYQ/ToUuCTAfbfI/AAAAAAAAACE/L0aJ7oRcqOw/h1600/body-pattern-1.png);
     color: #676767;
-    font: normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
-    line-height: 20px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size: 14px;
+line-height: 1.42857143;
+    
     margin: 0;
     padding: 0;
 }
@@ -288,7 +290,21 @@ box-shadow: inset 0 2px 2px rgba(0,0,0,.075);
     color: #fc0;
 }
 
+.btn-no-padding{
+    margin-top: -8px;
+}
 
+.accordion-toggle:hover{
+    text-decoration:none;
+}
+/*#endregion */
+
+/*#region Modal error */
+
+.warning-sign{
+    font-size: 60px;
+    color: #fc0;
+}
 
 /*#endregion */
 

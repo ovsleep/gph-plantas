@@ -61,7 +61,7 @@ router.get('/:id', function (req, res) {
     db.collection('orders').find(
         { _id: mongo.helper.toObjectID(orderId) }
     ).toArray(function (err, items) {
-        res.json(items);
+        res.json(items[0]);
     });
 });
 

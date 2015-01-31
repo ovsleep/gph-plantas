@@ -14,9 +14,9 @@ router.get('/listado/:id', function(req, res) {
     var db = req.db;
     var prodId = req.params.id;
     db.collection('products').find(
-            { 'id': prodId }
+            { _id: mongo.helper.toObjectID(prodId) }
         ).toArray(function (err, items) {
-        res.json(items);
+            res.json(items[0]);
     });
 });
 

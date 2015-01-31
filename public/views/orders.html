@@ -1,45 +1,40 @@
 ﻿<h2>Pedidos anteriores</h2>
-<table class="table table-striped">
-    <tr>
-        <td>Fecha</td>
-        <td></td>
-    </tr>
-    <tbody ng-repeat="order in orders">
-        <tr ng-click="isCollapsed$index = !isCollapsed$index" class="clickable">
-            <td>{{order.user.name}}</td>
-            <td>
-                Ver 
-            </td>
-        </tr>
-        <tr>
-            <td class="hiddenRow"></td>
-            <td colspan="6" class="hiddenRow">
-                <div class="order-lines" collapse="!isCollapsed$index">
-                    <table class="table table-striped">
-                        <tr>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Unidad</th>
-                            <th>Precio x Unidad</th>
-                            <th>Comentarios</th>
-                            <th>Total</th>
-                        </tr>
-                        <tr ng-repeat="line in order.lines">
-                            <td>{{line.name}}</td>
-                            <td>{{line.quantity}}</td>
-                            <td>{{line.unit}}</td>
-                            <td>{{line.price | currency}}</td>
-                            <td>{{line.comment}} </td>
-                            <td>{{line.price * line.quantity | currency}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"></td>
-                            <th>Total</th>
-                            <th>{{order.totalPrice | currency}}</th>
-                        </tr>
-                    </table>
-                </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
+
+<p>
+    Aquí puedes ver tus pedidos anteriores y puedes repetir un pedido anterior.
+</p>
+<p>
+    Para repetir un pedido, sólo debes seleccionarlo y hacer click en "Repetir Pedido"
+</p>
+<br />
+<accordion close-others="true">
+    <accordion-group ng-repeat="order in orders">
+        <accordion-heading href="">
+           Pedido {{order.date | date:'dd/MM/yyyy - H:mm'}} <span class="pull-right btn btn-info btn-no-padding">Ver pedido</span>
+        </accordion-heading>
+        <table class="table table-striped">
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Unidad</th>
+                <th>Precio x Unidad</th>
+                <th>Comentarios</th>
+                <th>Total</th>
+            </tr>
+            <tr ng-repeat="line in order.lines">
+                <td>{{line.name}}</td>
+                <td>{{line.quantity}}</td>
+                <td>{{line.unit}}</td>
+                <td>{{line.price | currency}}</td>
+                <td>{{line.comment}} </td>
+                <td>{{line.price * line.quantity | currency}}</td>
+            </tr>
+            <tr>
+                <td colspan="4"></td>
+                <th>Total</th>
+                <th>{{order.totalPrice | currency}}</th>
+            </tr>
+        </table>
+        <a class="btn btn-primary pull-right" href="" ng-click="repeatOrder(order._id)">Repetir pedido</a>
+    </accordion-group>
+</accordion>
