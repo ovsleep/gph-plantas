@@ -61,15 +61,16 @@ router.get('/:id', function (req, res) {
     db.collection('orders').find(
         { _id: mongo.helper.toObjectID(orderId) }
     ).toArray(function (err, items) {
-        res.json(items);
+        res.json(items[0]);
     });
 });
 
 router.get('/previous/:userId', function (req, res) {
     var db = req.db;
     var userId = req.params.userId;
+    console.log(userId);
     db.collection('orders').find(
-        { 'user.id': userId }
+        { "user.id": userId.toString() }
     ).toArray(function (err, items) {
         res.json(items);
     });

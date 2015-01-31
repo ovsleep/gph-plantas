@@ -1,5 +1,0 @@
-E:\Proyectos\Personal\gph-plantas\bin\gph_plantas.dll
-E:\Proyectos\Personal\gph-plantas\bin\gph_plantas.pdb
-E:\Proyectos\Personal\gph-plantas\obj\Debug\gph-plantas.csprojResolveAssemblyReference.cache
-E:\Proyectos\Personal\gph-plantas\obj\Debug\gph_plantas.dll
-E:\Proyectos\Personal\gph-plantas\obj\Debug\gph_plantas.pdb

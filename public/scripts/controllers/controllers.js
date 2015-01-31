@@ -37,29 +37,37 @@ app.config(['$routeProvider', function ($routeProvider) {
           templateUrl: '/views/productsList.html'
       })
       .when('/listado/filtro/:type', {
-        controller: 'ProductController',
-        resolve: {
-            products: ["ProductByTypeLoader", function (ProductByTypeLoader) {
-                return ProductByTypeLoader();
-            }]
-        },
-        templateUrl: '/views/productsList.html'
+          controller: 'ProductController',
+          resolve: {
+              products: ["ProductByTypeLoader", function (ProductByTypeLoader) {
+                  return ProductByTypeLoader();
+              }]
+          },
+          templateUrl: '/views/productsList.html'
       })
       .when('/carrito', {
           controller: 'FullCartController',
           templateUrl: '/views/cart.html'
       })
       .when('/confirmar-pedido', {
-            controller: 'CheckOutController',
-            templateUrl: '/views/checkOut.html',
-            access: {
-                requiresLogin: true
-            }
+          controller: 'CheckOutController',
+          templateUrl: '/views/checkOut.html',
+          access: {
+              requiresLogin: true
+          }
       })
+    .when('/repetir-pedido', {
+        controller: 'OrderController',
+        templateUrl: '/views/orders.html',
+        access: {
+            requiresLogin: true
+        }
+    })
+
        .when('/login', {
-            controller: 'LoginController',
-            templateUrl: '/views/login.html'
-        })
+           controller: 'LoginController',
+           templateUrl: '/views/login.html'
+       })
       .when('/registro', {
           controller: 'RegisterController',
           templateUrl: '/views/register.html'
@@ -68,14 +76,14 @@ app.config(['$routeProvider', function ($routeProvider) {
           controller: 'AccountController',
           templateUrl: '/views/account.html'
       })
-      .when('/gracias',{
+      .when('/gracias', {
           controller: 'ThankyouController',
           templateUrl: '/views/thankyou.html'
       })
-      .when('/como-comprar',{
+      .when('/como-comprar', {
           templateUrl: '/views/Instrucciones.html'
       })
-      .when('/contacto',{
+      .when('/contacto', {
           templateUrl: '/views/Contacto.html'
       })
       .otherwise({ redirectTo: '/' });
@@ -116,7 +124,7 @@ app.controller('ProductController', ['$scope', 'products', 'cart', '$modal',
                 console.log('Modal dismissed at: ' + new Date());
             });
         };
-}]);
+    }]);
 
 app.controller('ProductModalInstanceCtrl', function ($scope, $modalInstance, product, cart) {
     $scope.product = product;
@@ -153,8 +161,8 @@ app.controller('ProductModalInstanceCtrl', function ($scope, $modalInstance, pro
     };
 });
 
-app.controller('RegisterController', ['$scope', '$location', 'authenticationSvc',"$window",
-    function ($scope, $location, authenticationSvc,$window) {
+app.controller('RegisterController', ['$scope', '$location', 'authenticationSvc', "$window",
+    function ($scope, $location, authenticationSvc, $window) {
         $scope.message = '';
 
         $scope.addUser = function () {
@@ -168,7 +176,7 @@ app.controller('RegisterController', ['$scope', '$location', 'authenticationSvc'
         }
     }]);
 
-app.controller('AccountController', ['$scope', '$location', 'authenticationSvc',"$window",
+app.controller('AccountController', ['$scope', '$location', 'authenticationSvc', "$window",
     function ($scope, $location, authenticationSvc, $window) {
         $scope.message = '';
         $scope.user = authenticationSvc.getUserInfo();
@@ -205,12 +213,13 @@ function ($scope, $location) {
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();
     };
+    $scope.isCollapsed = false;
 }]);
 
 app.controller('CartController', ['$scope', 'cart',
 function ($scope, cart) {
     $scope.cart = cart;
-    
+
     $scope.itemsCount = function () {
         return cart.getTotalCount();
     }
@@ -257,10 +266,10 @@ function ($scope, cart, Order, $location, auth) {
     }
 
     $scope.confirmOrder = function () {
-        var newOrder = new Order({ lines: cart.items, user: $scope.user, status: 'Pendiente', totalPrice: cart.getTotalPrice() });
-        newOrder.$save(function(order){
-          cart.clearItems();
-          $location.path('/gracias')
+        var newOrder = new Order({ lines: cart.items, user: $scope.user, status: 'Pendiente', totalPrice: cart.getTotalPrice(), date: new Date() });
+        newOrder.$save(function (order) {
+            cart.clearItems();
+            $location.path('/gracias')
         });
     }
 
@@ -268,18 +277,18 @@ function ($scope, cart, Order, $location, auth) {
 
 app.controller('ThankyouController', ['$scope', '$location',
 function ($scope, $location) {
-  $scope.goBack = function(){
-      $location.path('/')
-  }
+    $scope.goBack = function () {
+        $location.path('/')
+    }
 }]);
 
-app.controller("LoginController", ["$scope", "$location", "$window", "authenticationSvc",function ($scope, $location, $window, authenticationSvc) {
+app.controller("LoginController", ["$scope", "$location", "$window", "authenticationSvc", function ($scope, $location, $window, authenticationSvc) {
     $scope.userInfo = null;
     $scope.login = function () {
         authenticationSvc.login($scope.userName, $scope.password)
             .then(function (result) {
                 $scope.userInfo = result;
-                $location.path(authenticationSvc.refUrl);
+                $location.path(authenticationSvc.refUrl ? authenticationSvc.refUrl : '/#');
             }, function (error) {
                 $window.alert("Invalid credentials");
                 console.log(error);
@@ -299,6 +308,19 @@ function ($scope, $location, auth) {
         auth.logout();
         $location.path('/');
     }
+    $scope.status = {
+        isopen: false
+    };
+
+    $scope.toggled = function (open) {
+        $log.log('Dropdown is now: ', open);
+    };
+
+    $scope.toggleDropdown = function ($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.status.isopen = !$scope.status.isopen;
+    };
 
     $scope.$watch('auth.getUserInfo()', function (newVal) {
         $scope.user = newVal;
@@ -321,5 +343,78 @@ app.controller('CarouselDemoCtrl', function ($scope) {
     $scope.addSlide('/images/slider/Slider5.png');
     $scope.addSlide('/images/slider/Slider7.png');
     $scope.addSlide('/images/slider/Slider6.png');
-    
+
+});
+
+app.controller('OrderController', ['$scope', 'Order', 'cart', 'Product', '$q', '$modal', '$location',
+function ($scope, Order, cart, Product, $q, $modal, $location) {
+    $scope.orders = Order.previous();
+
+    $scope.repeatOrder = function (id) {
+        cart.clearItems();
+
+        Order.get({ id: id }).$promise.then(function (toRepeat) {   //obtengo la orden
+            var prodQueue = []
+            toRepeat.lines.forEach(function (line) {        //preparo el array con las promises para obtener los productos de la orden
+                var prodId = line.product._id;
+                prodQueue.push(Product.get({ id: prodId }).$promise)
+
+            });
+            $q.all(prodQueue).then(function (allProducts) {   //ejecuto y espero a que terminen las promises
+                var tmp = [];
+                angular.forEach(allProducts, function (response) {
+                    tmp.push(response);
+                });
+                return tmp;
+            }).then(function (allResults) {
+                var missingProducts = [];
+                var idx = 0;
+                allResults.forEach(function (product) { //agrego los productos que esten activos al carrito
+                    var line = toRepeat.lines[idx];
+                    if (product.active) {
+                        cart.addItem(product, line.unit, line.quantity, line.comment);
+                    }
+                    else {
+                        missingProducts.push(product);
+                    }
+                    idx++;
+                });
+
+                if (missingProducts.length > 0) {   //alerto de productos inactivos
+                    $scope.openModal(missingProducts);
+                }
+                else {
+                    $location.path('/carrito');
+                }
+            })
+        });
+    }
+
+    $scope.openModal = function (products) {
+        var modalInstance = $modal.open({
+            templateUrl: '/views/productMissingModal.html',
+            controller: 'ProductMissingModalInstanceCtrl',
+            size: 'sm',
+            resolve: {
+                products: function () {
+                    return products;
+                }
+            }
+        });
+
+        modalInstance.result.then(function () {
+            $location.path('/carrito');
+        }, function () {
+            $location.path('/carrito');
+        });
+    }
+}
+]);
+
+app.controller('ProductMissingModalInstanceCtrl', function ($scope, $modalInstance, products) {
+    $scope.products = products;
+
+    $scope.ok = function () {
+        $modalInstance.close();
+    };
 });

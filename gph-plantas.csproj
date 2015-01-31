@@ -239,6 +239,7 @@
     <Content Include="public\views\Contacto.html" />
     <Content Include="public\views\Instrucciones.html" />
     <Content Include="public\views\login.html" />
+    <Content Include="public\views\orders.html" />
     <Content Include="public\views\productModal.html" />
     <Content Include="public\views\account.html" />
     <Content Include="public\views\productsList.html" />

@@ -17,8 +17,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
 
     <!--Bootstrap Directives-->
-    <!--<script src="js/ui-bootstrap-tpls-0.12.0.js"></script>-->
-    <script src="js/ui-bootstrap-tpls-0.11.2.min.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.12.0.js"></script>
+    <!--<script src="js/ui-bootstrap-tpls-0.11.2.min.js"></script>-->
     <script src="/scripts/directives/directives.js"></script>
     <script src="scripts/services/shoppingCart.js"></script>
     <script src="scripts/services/services.js"></script>
@@ -45,11 +45,20 @@
                 </ul>
             </div>-->
             <div class="pull-left">
-                <span class="glyphicon glyphicon-earphone"></span> <span>099989891</span>
+                <span class="glyphicon glyphicon-earphone"></span> <span>099 989-891</span>
             </div>
             <div class="pull-right" ng-controller="WelcomeController">
-                <div ng-show="user">Bienvenido, <a href="/#/cuenta">{{user.name}}</a> - <a href="#" ng-click="logout()">salir</a></div>
-                <div ng-hide="user"><a href="/#/login">ingresar</a></div>
+                <div ng-show="user" class="btn-group" dropdown is-open="status.isopen">
+                    <button type="button" class="btn btn-success dropdown-toggle btn-login" dropdown-toggle >
+                        {{user.name}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/#/cuenta">Modificar datos</a></li>
+                        <li class="divider"></li>
+                        <li><a href="" ng-click="logout()">Salir</a></li>
+                    </ul>
+                </div>
+                <div ng-hide="user"><a href="/#/login" class="btn btn-warning btn-login">ingresar</a></div>
             </div>
         </div>
         <div class="row header">
@@ -71,63 +80,64 @@
             </div>
         </div>
         <div class="content">
-            <nav class="navbar navbar-default" role="navigation">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <!--<a class="navbar-brand" href="#">GPH</a>-->
-                    </div>
+            <div>
+                <nav class="navbar navbar-default" role="navigation" ng-controller="MenuController">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" ng-click="isCollapsed = !isCollapsed">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <!--<a class="navbar-brand" href="#">GPH</a>-->
+                        </div>
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="MenuController">
-                        <ul class="nav navbar-nav navbar-left">
-                            <li ng-class="{ active : isActive('/')}"><a href="#/">Inicio</a></li>
-                            <li class="dropdown">
-                                <a href="" class="dropdown-toggle" data-toggle="dropdown">Productos <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#/">Todos</a></li>
-                                    <li><a href="#/filtro/verduras">Verduras</a></li>
-                                    <li><a href="#/filtro/frutas">Frutas</a></li>
-                                    <li><a href="#/filtro/plantas">Plantas y Flores</a></li>
-                                    <li><a href="#">Combos</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="" class="dropdown-toggle" data-toggle="dropdown">Listado <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#/listado/">Todos</a></li>
-                                    <li><a href="#/listado/filtro/verduras">Verduras</a></li>
-                                    <li><a href="#/listado/filtro/frutas">Frutas</a></li>
-                                    <li><a href="#/listado/filtro/plantas">Plantas y Flores</a></li>
-                                    <li><a href="#/listado/">Combos</a></li>
-                                </ul>
-                            </li>
-                            <li ng-class="{ active : isActive('/contacto')}"><a href="#/contacto">Contacto</a></li>
-                            <li ng-class="{ active : isActive('/como-comprar')}"><a href="#/como-comprar">Cómo comprar?</a></li>
-                            <!--<li ng-class="{ active : isActive('/registro')}"><a href="#/registro">Registrarse</a></li>-->
-                            <li class="pull-right">
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div collapse="isCollapsed" id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav navbar-left">
+                                <li ng-class="{ active : isActive('/')}"><a href="#/">Inicio</a></li>
+                                <li class="dropdown" dropdown>
+                                    <a href="" class="dropdown-toggle" dropdown-toggle>Productos <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#/">Todos</a></li>
+                                        <li><a href="#/filtro/verduras">Verduras</a></li>
+                                        <li><a href="#/filtro/frutas">Frutas</a></li>
+                                        <li><a href="#/filtro/plantas">Plantas y Flores</a></li>
+                                        <li><a href="#">Combos</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown" dropdown>
+                                    <a href="" class="dropdown-toggle" dropdown-toggle>Listado <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#/listado/">Todos</a></li>
+                                        <li><a href="#/listado/filtro/verduras">Verduras</a></li>
+                                        <li><a href="#/listado/filtro/frutas">Frutas</a></li>
+                                        <li><a href="#/listado/filtro/plantas">Plantas y Flores</a></li>
+                                        <li><a href="#/listado/">Combos</a></li>
+                                    </ul>
+                                </li>
+                                <li ng-class="{ active : isActive('/contacto')}"><a href="#/contacto">Contacto</a></li>
+                                <li ng-class="{ active : isActive('/como-comprar')}"><a href="#/como-comprar">Cómo comprar?</a></li>
+                                <li ng-class="{ active : isActive('/repetir-pedido')}"><a href="#/repetir-pedido">Repetir Pedido</a></li>
+                                <!--<li ng-class="{ active : isActive('/registro')}"><a href="#/registro">Registrarse</a></li>-->
+                                <li class="pull-right">
 
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <div class="menu-cart" ng-controller="CartController">
-                                    <a class="mycart" href="#/carrito">Mi Carrito : <span class="simpleCart_quantity">{{cart.getTotalCount()}}</span> item(s)</a>
-                                    Precio Total: <span class="simpleCart_total">{{cart.getTotalPrice() | currency}}</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
+                                </li>
+                            </ul>
 
-                </div><!-- /.container-fluid -->
-            </nav>
+                        </div><!-- /.navbar-collapse -->
 
+                    </div><!-- /.container-fluid -->
+                </nav>
+
+                <cart class="menu-cart pull-right" ng-controller="CartController">
+                    <a class="mycart" href="#/carrito">Mi Carrito : <span class="simpleCart_quantity">{{cart.getTotalCount()}}</span> item(s)</a>
+                    Precio Total: <span class="simpleCart_total">{{cart.getTotalPrice() | currency}}</span>
+                </cart>
+            </div>
+            <div class="clearfix"></div>
             <div ng-view></div>
         </div>
         <div class="bottom-bar">

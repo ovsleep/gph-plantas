@@ -47,9 +47,25 @@ services.factory('cart', function () {
     return new shoppingCart('test');
 });
 
-services.factory('Order', ['$resource', function ($resource) {
-    return $resource('/api/orders/:id', { id: '@id' });
+services.factory('Order', ['$resource', 'authenticationSvc', function ($resource, authenticationSvc) {
+    return $resource('/api/orders/:id', { id: '@id' }, {
+        previous: { method: 'GET', url: '/api/orders/previous/' + authenticationSvc.getUserInfo().id, isArray: true }
+    });
 }]);
+
+services.factory('PreviousOrders', ['$resource', '$q', function ($resource, $q) {
+    var prevOrder = $resource('/api/orders/previous/:id', { id: '@id' });
+    return function () {
+        var delay = $q.defer();
+        prevOrder.query(function (orders) {
+            delay.resolve(orders);
+        }, function () {
+            delay.reject('Problemas obteniendo los productos');
+        });
+
+        return delay.promise;
+    }
+}])
 
 services.factory("authenticationSvc", ["$http","$q","$window",function ($http, $q, $window) {
     var userInfo;
