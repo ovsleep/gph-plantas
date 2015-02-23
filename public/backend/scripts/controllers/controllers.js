@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 var app = angular.module('GPHPlantasBackend',
-    ['ngRoute', 'GPHPlantasBackend.directives', 'GPHPlantasBackend.services', 'ui.bootstrap', 'angularFileUpload']);
+    ['ngRoute', 'GPHPlantasBackend.directives', 'GPHPlantasBackend.services', 'ui.bootstrap', 'angularFileUpload', 'angulartics', 'angulartics.google.tagmanager']);
 
 app.config(function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
