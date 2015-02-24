@@ -262,4 +262,27 @@ router.get('/users/:id', function (req, res) {
 
 /***********************************************/
 
+/*********** Status **************/
+router.get('/status', function (req, res) {
+    var db = req.db;
+    db.collection('orders').aggregate([
+        {
+            $group: {
+                _id: '$status',
+                total: { $sum: 1 }
+            }
+        },
+    ],
+    function (err, result) {
+        var resultStatus = {Pendiente: 0, Listo: 0, Entregado: 0};
+        result.forEach(function (elem) {
+            resultStatus[elem._id] = elem.total;
+        });
+
+        res.json(resultStatus);
+    });
+});
+/***********************************************/
+
+
 module.exports = router;

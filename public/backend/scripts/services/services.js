@@ -101,6 +101,11 @@ services.factory('MultiUserLoader', ['User', '$q', function (User, $q) {
     }
 }]);
 
+services.factory('Status', ['$resource', function ($resource) {
+    return $resource('/api/backend/status', { },
+        { GetAllStatus: { method: 'get', isArray: true } });
+}]);
+
 services.factory("authenticationSvc", ["$http","$q","$window",function ($http, $q, $window) {
     var userInfo;
 

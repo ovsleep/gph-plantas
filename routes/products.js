@@ -24,7 +24,10 @@ router.get('/listado/filtro/:type', function(req, res) {
     var db = req.db;
     var prodType = req.params.type;
     db.collection('products').find(
-    		{ 'type': prodType }
+    		{
+    		    'type': prodType,
+    		    'active': true
+    		}
     	).sort({ name: 1 }).toArray(function (err, items) {
         
         res.json(items);
