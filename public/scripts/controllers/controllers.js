@@ -337,7 +337,13 @@ app.controller('CarouselDemoCtrl', function ($scope) {
         });
     };
     
-    $scope.addSlide('/images/slider/SliderVacance.png');
+    $scope.addSlide('/images/slider/Slider1.png');
+    $scope.addSlide('/images/slider/Slider2.png');
+    $scope.addSlide('/images/slider/Slider3.png');
+    $scope.addSlide('/images/slider/Slider6.png');
+    $scope.addSlide('/images/slider/Slider5.png');
+    $scope.addSlide('/images/slider/Slider7.png');
+    $scope.addSlide('/images/slider/Slider6.png');
 
 });
 
