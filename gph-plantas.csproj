@@ -70,6 +70,8 @@
     <Content Include="public\backend\font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
     <Content Include="public\backend\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="public\backend\index.html" />
+    <Content Include="public\js\angulartics-gtm.min.js" />
+    <Content Include="public\js\angulartics.min.js" />
     <Content Include="public\backend\js\bootstrap.js" />
     <Content Include="public\backend\js\bootstrap.min.js" />
     <Content Include="public\backend\js\jquery.js" />
