@@ -1,0 +1,47 @@
+﻿<div class="well info-company">
+    <h3 class="text-center">Combos para Empresas</h3>
+
+    <div class="row">
+        <div class="col-sm-4 ">
+            <div class="col-sm-3 icon"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></div>
+            <div class="col-sm-6">
+                <h4>Ahorrá!</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed faucibus arcu. Curabitur pretium libero et lobortis lobortis.</p>
+            </div>
+        </div>
+
+        <div class="col-sm-4 info-company">
+            <div class="col-sm-3 icon"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></div>
+            <div class="col-sm-6">
+                <h4>Cuida la salud</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed faucibus arcu. Curabitur pretium libero.</p>
+            </div>
+        </div>
+
+        <div class="col-sm-4 info-company">
+            <div class="col-sm-3 icon"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></div>
+            <div class="col-sm-6">
+                <h4>+ Contentos</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed faucibus arcu. Curabitur. </p>
+            </div>
+        </div>
+    </div>
+    <!--<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>-->
+</div>
+
+        <div class="row">
+            <div ng-repeat="product in products" class="col-sm-4 col-md-4 col-lg-4" ng-click="startAdding(product)">
+                <div class="thumbnail company">
+                    <span class="price">{{product.price | currency}} ({{product.unit}})</span>
+                    <img ng-src="{{product.image}}" class="combo-img" alt="...">
+                    <div class="caption center-block">
+                        <h3>{{product.name}}</h3>
+                        <p>{{product.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div class="well info-company">
+    <h4>Si quieres modificar algún combo o crear uno personalizado, por favor contactanos al: 099 989 891</h4>
+</div>
