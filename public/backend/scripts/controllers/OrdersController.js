@@ -44,6 +44,7 @@
                 var dd = date.getDate().toString();
                 var ss = date.getSeconds().toString();
                 //var filename = 'pedidos.' + yyyy + (mm[1] ? mm : "0" + mm[0]) + (dd[1] ? dd : "0" + dd[0]) + ss + '.csv'; // padding
+                //Este es el cambio
                 var filename = 'pedidos.csv' 
 
                 // Determine the content type from the header or default to "application/octet-stream"
