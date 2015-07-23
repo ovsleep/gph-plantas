@@ -34,9 +34,9 @@ services.factory('ProductLoader', ['Product', '$route', '$q', function (Product,
 }]);
 
 services.factory('ProductByTypeLoader', ['ProductByType', '$route', '$q', function (ProductByType, $route, $q) {
-    return function () {
+    return function (type) {
         var delay = $q.defer();
-        ProductByType.query({ type: $route.current.params.type }, function (product) { delay.resolve(product) }, function () {
+        ProductByType.query({ type: type || $route.current.params.type }, function (product) { delay.resolve(product) }, function () {
             delay.reject('Poblemas obteniendo los productos de tipo ' + $route.current.params.type);
         });
         return delay.promise;

@@ -164,7 +164,8 @@ padding: 16px 15px 16px 14px;
     margin: 0;
     display:table-cell;
     vertical-align:middle;
-    font-size:16px;
+    font-size:20px;
+
 }
 
 .product .price{
@@ -322,6 +323,45 @@ box-shadow: inset 0 2px 2px rgba(0,0,0,.075);
 
 /*#endregion */
 
+/*#region Companies */
+
+.info-company .icon{
+    font-size:55px;
+    text-align:right;
+    padding-top:30px
+}
+
+.info-company .glyphicon-usd{
+    color: #fc0;
+}
+
+.info-company .glyphicon-heart-empty{
+    color: #DD2424;
+}
+
+.info-company .glyphicon-thumbs-up{
+    color: #3c763d;
+}
+
+.info-company h3{
+    margin-top: 10px;
+    margin-bottom:30px;
+}
+
+.company{
+    cursor: pointer;
+}
+.company .price{
+    background-color: #7f6600;
+    color: #FFF;
+    font-weight: bold;
+    padding: 4px;
+    position: absolute;
+    top: 100px;
+    left: 60%;
+    white-space: nowrap;
+}
+/*#endregion */
 /*#region MediaQuery */
 
 @media (max-width: 1200px) {
