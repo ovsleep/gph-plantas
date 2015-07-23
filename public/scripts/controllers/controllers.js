@@ -86,6 +86,15 @@ app.config(['$routeProvider', function ($routeProvider) {
       .when('/contacto', {
           templateUrl: '/views/Contacto.html'
       })
+      .when('/empresas', {
+          controller: 'ProductController',
+          templateUrl: '/views/companies.html',
+          resolve: {
+              products: ["ProductByTypeLoader", function (ProductByTypeLoader) {
+                  return ProductByTypeLoader('empresa');
+              }]
+          }
+      })
       .otherwise({ redirectTo: '/' });
 }]);
 
@@ -206,7 +215,6 @@ app.controller('AccountController', ['$scope', '$location', 'authenticationSvc',
         //   });
         //}
     }]);
-
 
 app.controller('MenuController', ['$scope', '$location',
 function ($scope, $location) {
