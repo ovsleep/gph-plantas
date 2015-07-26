@@ -70,7 +70,7 @@
             </div>
             <div class="pull-right" ng-controller="WelcomeController">
                 <div ng-show="user" class="btn-group" dropdown is-open="status.isopen">
-                    <button type="button" class="btn btn-success dropdown-toggle btn-login" dropdown-toggle >
+                    <button type="button" class="btn btn-success dropdown-toggle btn-login" dropdown-toggle>
                         {{user.name}} <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
@@ -142,12 +142,8 @@
                                 <li ng-class="{ active : isActive('/contacto')}"><a href="#/contacto">Contacto</a></li>
                                 <li ng-class="{ active : isActive('/como-comprar')}"><a href="#/como-comprar">Cómo comprar?</a></li>
                                 <li ng-class="{ active : isActive('/repetir-pedido')}"><a href="#/repetir-pedido">Repetir Pedido</a></li>
-<<<<<<< HEAD
-                                <li ng-class="{ active : isActive('/repetir-pedido')}"><a href="#/Empresas">Empresas</a></li>
-=======
                                 <!--<li ng-class="{ active : isActive('/empresas')}"><a href="#/empresas">Empresas</a></li>-->
->>>>>>> 1f5c7f00344948c41f4d9a7948480086d82f7380
-                                <!--<li ng-class="{ active : isActive('/registro')}"><a href="#/registro">Registrarse</a></li>-->
+                                <li ng-class="{ active : isActive('/registro')}"><a href="#/registro">Registrarse</a></li>
                                 <li class="pull-right">
 
                                 </li>
@@ -158,13 +154,28 @@
                     </div><!-- /.container-fluid -->
                 </nav>
 
-                <cart class="menu-cart pull-right" ng-controller="CartController">
+                <!--Descomentar esto-->
+                <!--*********************************************-->
+                <!--<cart class="menu-cart pull-right" ng-controller="CartController">
                     <a class="mycart" href="#/carrito">Mi Carrito : <span class="simpleCart_quantity">{{cart.getTotalCount()}}</span> item(s)</a>
                     Precio Total: <span class="simpleCart_total">{{cart.getTotalPrice() | currency}}</span>
-                </cart>
+                </cart>-->
+                <!--*********************************************-->
+
             </div>
             <div class="clearfix"></div>
-            <div ng-view></div>
+
+            <!--Descomentar esto-->
+            <!--*********************************************-->
+            <!--<div ng-view></div>-->
+            <!--*********************************************-->
+
+            <!--Comentar esto-->
+            <!--*********************************************-->
+            <div class="text-center">
+                <img src="../images/offline.png" class="img-responsive" style="margin: 0 auto;" />
+            </div>
+            <!--*********************************************-->
         </div>
         <div class="bottom-bar">
             <div class="pull-left">

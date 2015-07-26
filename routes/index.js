@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.sendfile('./public/index.html');
+    res.sendfile('./public/index.html');
 });
 
 router.get('/backend', function (req, res) {
