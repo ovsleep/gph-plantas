@@ -70,6 +70,7 @@
     <Content Include="public\backend\font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
     <Content Include="public\backend\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="public\backend\index.html" />
+    <Content Include="public\images\offline.png" />
     <Content Include="public\js\angulartics-gtm.min.js" />
     <Content Include="public\js\angulartics.min.js" />
     <Content Include="public\backend\js\bootstrap.js" />
@@ -239,6 +240,7 @@
     <Content Include="public\js\ui-bootstrap-tpls-0.12.0.js" />
     <Content Include="public\styles\bootstrap.css" />
     <Content Include="public\views\Contacto.html" />
+    <Content Include="public\indexoffline.html" />
     <Content Include="public\views\Instrucciones.html" />
     <Content Include="public\views\login.html" />
     <Content Include="public\views\orders.html" />
