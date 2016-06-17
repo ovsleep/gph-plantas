@@ -1,53 +1,57 @@
 var express = require('express');
 var router = express.Router();
 var mongo = require('mongoskin');
-var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.MAIL_FROM,
-        pass: process.env.MAIL_PASS
-    }
-});
 
+var sendgrid = require("sendgrid")(process.env.SENDGRID_API);
 
 //usuarios
 router.post('/', function(req, res) {
     var db = req.db;
     //TODO: Check if valid user
     db.collection('orders').insert(req.body, function (err, result) {
-        var mail = {
-            from: process.env.MAIL_FROM,
-            to: process.env.MAIL_TO,
-            subject: 'Nuevo pedido',
-        }
 
-        mail.html = '<h3>Nuevo pedido</h3><table>'
-        mail.html = '<tr><td>Producto</td><td>Cantidad</td><td>Precio</td><td>Unidad</td><td>Comentarios</td></tr>'
+        var email = new sendgrid.Email();
+        email.addTo('ovsleep@gmail.com');
+        email.addTo('phgabri@gmail.com');
+        email.setFrom("ovsleep@gmail.com");
+        email.setSubject("Nuevo pedido");
+        email.setFromName('Puesto en Casa');
+
+        var html = '<h3>Nuevo pedido</h3><table>'
+        html = '<tr><td>Producto</td><td>Cantidad</td><td>Precio</td><td>Unidad</td><td>Comentarios</td></tr>'
         req.body.lines.forEach(function (prod) {
-            mail.html += '<tr>'
-            mail.html += '<td>' + prod.name + '</td>';
-            mail.html += '<td>' + prod.quantity + '</td>';
-            mail.html += '<td>' + prod.price + '</td>';
-            mail.html += '<td>' + prod.unit + '</td>';
-            mail.html += '<td>' + prod.comment + '</td>';
-            mail.html += '</tr>';
+            html += '<tr>'
+            html += '<td>' + prod.name + '</td>';
+            html += '<td>' + prod.quantity + '</td>';
+            html += '<td>' + prod.price + '</td>';
+            html += '<td>' + prod.unit + '</td>';
+            html += '<td>' + prod.comment + '</td>';
+            html += '</tr>';
         })
 
-        mail.html += '</table>'
-        mail.html += '<br/> Comentarios: ' + req.body.user.comments;
-        mail.html += '<br/> Total: ' + req.body.totalPrice;
-        mail.html += '<br/> Para: <br>'
-        mail.html += '<ul>'
-        mail.html += '<li>' + req.body.user.name +'</li>'
-        mail.html += '<li>' + req.body.user.email + '</li>'
-        mail.html += '<li>' + req.body.user.phone + '</li>'
-        mail.html += '<li>' + req.body.user.address + '</li>'
-        mail.html += '</ul>'
+        html += '</table>'
+        html += '<br/> Comentarios: ' + req.body.user.comments;
+        html += '<br/> Total: ' + req.body.totalPrice;
+        html += '<br/> Para: <br>'
+        html += '<ul>'
+        html += '<li>' + req.body.user.name + '</li>'
+        html += '<li>' + req.body.user.email + '</li>'
+        html += '<li>' + req.body.user.phone + '</li>'
+        html += '<li>' + req.body.user.address + '</li>'
+        html += '</ul>'
 
-        console.log(mail);
+        email.setHtml(html);
 
-        transporter.sendMail(mail);
+        sendgrid.send(email, function (err, json) {
+            if (err) {
+                console.error(err);
+            }
+            else {
+                console.log('enviado: ' + guest.name);
+                db.collection('guests').updateOne({ _id: guest._id }, { $set: { sent: true } });
+            }
+        });
+
 
         res.send(
             (err === null) ? { msg: '' } : { msg: err }
